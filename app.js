@@ -11,7 +11,7 @@ var app = express();
 
 //Set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://kaitokid14121998:mssv20162569@cluster0-xlsjm.mongodb.net/test?retryWrites=true';
+var mongoDB = 'mongodb+srv://kaitokid14121998:mssv20162569@cluster0-xlsjm.mongodb.net/electronic_id_card?retryWrites=true';
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
