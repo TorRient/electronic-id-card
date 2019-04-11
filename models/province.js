@@ -9,6 +9,7 @@ var Province = new Schema(
         quan: [{type: Schema.Types.ObjectId, ref:'District'}],
         huyen: [{type: Schema.Types.ObjectId, ref:'District'}],
         thi_xa: [{type: Schema.Types.ObjectId, ref:'District'}],
+        thanh_pho: [{type: Schema.Types.ObjectId, ref: 'District'}]
     }
 );
 
