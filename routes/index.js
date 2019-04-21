@@ -22,7 +22,7 @@ router.post('/login',
   })
 )
 
-router.get('/dashboard', function(req, res, next) {
+router.get('/dashboard', isLoggedIn, function(req, res, next) {
   res.render('admin/dashboard', { title: 'Express' });
 });
 
