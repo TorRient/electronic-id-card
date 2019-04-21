@@ -1,5 +1,7 @@
 #! /usr/bin/env node
 
+// Sử dụng để tạo dữ liệu mẫu trên database
+
 console.log('This script populates some test identification, distric, ... for project');
 
 // Get arguments passed on command line

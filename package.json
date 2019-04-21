@@ -7,14 +7,26 @@
     "devstart": "nodemon ./bin/www"
   },
   "dependencies": {
+    "@types/connect-flash": "0.0.34",
+    "@types/express-session": "^1.15.12",
+    "@types/passport": "^1.0.0",
     "async": "^2.6.2",
-    "cookie-parser": "~1.4.3",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "^4.16.4",
+    "express-session": "^1.16.1",
+    "express-validator": "^5.3.1",
     "http-errors": "~1.6.2",
     "mongoose": "^5.5.0",
-    "morgan": "~1.9.0",
-    "nodemon": "^1.18.11"
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.11",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-remember-me": "0.0.1",
+    "utils": "^0.3.1"
   }
 }
