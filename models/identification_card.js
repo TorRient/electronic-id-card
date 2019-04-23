@@ -11,14 +11,14 @@ var IdentificationCard  = new Schema(
 		nguyen_quan: {type: String, resuire: true},
 		thuong_tru: {type: String, require: true},
 		tam_tru: {type: String, require: true},
-		dan_toc: {type: String, reqire: true},
+		dan_toc: {type: String, require: true},
 		ton_giao: {type: String, require: true},
-		dau_vet_rieng_va_di_hinh: {type: String},
+		dau_vet_rieng_va_di_hinh: {type: String, default: ""},
 		ngay_cap: {type: Date, require: true},
 		anh_chan_dung: {type: String, require: true},
-		anh_cmt_truoc: {type: String},
-		anh_cmt_sau: {type: String},
-		nghe_nghiep: {type: Schema.Types.ObjectId, ref: 'Job'}
+		anh_cmt_truoc: {type: String, default: ""},
+		anh_cmt_sau: {type: String, default: ""},
+		nghe_nghiep: {type: String, require: true}
 	}
 );
 
