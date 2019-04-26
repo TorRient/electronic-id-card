@@ -1,6 +1,13 @@
 var validator = require('express-validator');
 var flash = require('connect-flash');
 var IdentificationCard = require('../models/identification_card');
+var dan_toc_cfg = require('../config/dan_toc');
+var ton_giao_cfg = require('../config/ton_giao');
+var nghe_nghiep_cfg = require('../config/nghe_nghiep');
+var dan_toc = dan_toc_cfg;
+var ton_giao = ton_giao_cfg;
+var nghe_nghiep = nghe_nghiep_cfg;
+
 exports.insertRecord = function (req, res) {
     var insert = new IdentificationCard({
         so_cmt: req.body.so_cmt,
@@ -34,12 +41,23 @@ exports.insertRecord = function (req, res) {
         || Object.keys(req.body.xa_tam_tru) === undefined) {
         console.log('Object missing');
         req.flash('err', 'Not emty');
-        return res.redirect('/insertRecord');
+        return res.render('admin/insertRecord', {
+            dan_toc: dan_toc,
+            ton_giao: ton_giao,
+            nghe_nghiep: nghe_nghiep,
+            conditional: 1
+        });
     } else {
         IdentificationCard.find({ so_cmt: req.body.so_cmt }, function (err, existing) {
             if (existing.length) {
                 console.log("CMT tồn tại");
-                return res.redirect('/insertRecord');
+                var conditional = 1;
+                return res.render('admin/insertRecord', {
+                    dan_toc: dan_toc,
+                    ton_giao: ton_giao,
+                    nghe_nghiep: nghe_nghiep,
+                    conditional: 2
+                });
             } else {
                 console.log("CMT không tồn tại");
                 insert.save(function (err) {
@@ -53,7 +71,12 @@ exports.insertRecord = function (req, res) {
                         console.log("Thêm thành công");
                     }
                 })
-                return res.redirect('/dashboard');
+                return res.render('admin/insertRecord', {
+                    dan_toc: dan_toc,
+                    ton_giao: ton_giao,
+                    nghe_nghiep: nghe_nghiep,
+                    conditional: 3
+                });
             };
         });
     };

@@ -8,28 +8,28 @@ var utils = require('utils');
 var insertRecord = require('../controller/insertRecord');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
 // Xử lý thông tin khi có người thực hiện đăng nhập
-router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Express', message : req.flash('loginMessage') } );
+router.get('/login', function (req, res, next) {
+  res.render('login', { title: 'Express', message: req.flash('loginMessage') });
 });
 
 router.post('/login',
   passport.authenticate("local-login", {
-    successRedirect : '/dashboard',
-    failureRedirect : '/login',
-    failureFlash : true
+    successRedirect: '/dashboard',
+    failureRedirect: '/login',
+    failureFlash: true
   })
 )
 
-router.get('/dashboard', function(req, res, next) {
+router.get('/dashboard', function (req, res, next) {
   res.render('admin/dashboard', { title: 'Express' });
 });
 
-router.get('/userProfile', isLoggedIn,  function(req, res, next) {
+router.get('/userProfile', isLoggedIn, function (req, res, next) {
   res.render('admin/userProfile', { title: 'Express' });
 });
 
@@ -50,9 +50,10 @@ router.get('/insertRecord', function (req, res) {
   var ton_giao = ton_giao_cfg;
   var nghe_nghiep = nghe_nghiep_cfg
   res.render('admin/insertRecord', {
-    dan_toc : dan_toc,
+    dan_toc: dan_toc,
     ton_giao: ton_giao,
-    nghe_nghiep: nghe_nghiep
+    nghe_nghiep: nghe_nghiep,
+    conditional : 0
   });
 });
 
@@ -60,7 +61,7 @@ router.get('/insertRecord', function (req, res) {
 function isLoggedIn(req, res, next) {
   // Nếu một user đã xác thực, cho đi tiếp
   if (req.isAuthenticated())
-      return next();
+    return next();
   // Nếu chưa, đưa về trang chủ
   res.redirect('/');
 }
