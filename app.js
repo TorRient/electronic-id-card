@@ -1,14 +1,15 @@
-var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 var session = require('express-session');
 var passport = require('passport');
-var flash = require('connect-flash')
+var flash = require('connect-flash');
+var validator = require('express-validator');
 
+var settings = require('./config/settings');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -16,9 +17,8 @@ var app = express();
 
 //Set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://kaitokid14121998:mssv20162569@cluster0-xlsjm.mongodb.net/electronic_id_card?retryWrites=true';
-mongoose.connect(mongoDB, { useNewUrlParser: true });
-var db = mongoose.connection;
+mongoose.connect(settings.hostDB, { useNewUrlParser: true });
+var db = mongoose.connection; 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // view engine setup
@@ -26,17 +26,22 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(validator());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser());
 
 // các cài đặt cần thiết cho passport
-app.use(session({secret: 'ilovescodetheworld'})); // chuối bí mật đã mã hóa coookie
+app.use(session({
+  secret: settings.secured_key,// chuối bí mật đã mã hóa coookie
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(flash());
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
+app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
