@@ -7,13 +7,14 @@ var User = new Schema(
     {
         user_name: {type:String, require: true, trim: true},
         password: {type: String, require: true},
-        first_name: {type: String},
-        last_name: {type: String},
-        adress: {type: String},
-        city: {type: String},
-        about_me: {type: String},
-        email: {type: String},
-        phone: {type: Number}
+        first_name: {type: String, trim : true},
+        last_name: {type: String, trim: true},
+        adress: {type: String, trim: true},
+        city: {type: String, trim: true},
+        about_me: {type: String, trim: true},
+        email: {type: String, trim: true},
+        phone: {type: Number, trim: true},
+        workplace: {type: String, trim: true}
     }
 );
 
