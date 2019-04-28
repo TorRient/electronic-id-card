@@ -6,6 +6,7 @@ var passport = require('passport');
 var utils = require('utils');
 
 var insertRecord = require('../controller/insertRecord');
+var profileController = require('../controller/profileController')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -13,9 +14,7 @@ router.get('/', function (req, res, next) {
 });
 
 // Xử lý thông tin khi có người thực hiện đăng nhập
-router.get('/login', function (req, res, next) {
-  res.render('login', { title: 'Express', message: req.flash('loginMessage') });
-});
+router.get('/login', loginController.get_login);
 
 router.post('/login',
   passport.authenticate("local-login", {
@@ -25,17 +24,15 @@ router.post('/login',
   })
 )
 
+router.get('/logout', loginController.logout);
+
+// Xử lý thông tin khi admin lấy profile
+router.get('/userProfile', isLoggedIn, profileController.get_profile);
+
+router.post('/userProfile', isLoggedIn, profileController.update_profile);
+
 router.get('/dashboard', function (req, res, next) {
   res.render('admin/dashboard', { title: 'Express' });
-});
-
-router.get('/userProfile', isLoggedIn, function (req, res, next) {
-  res.render('admin/userProfile', { title: 'Express' });
-});
-
-router.get('/logout', function (req, res) {
-  req.logout();
-  res.redirect('/');
 });
 
 // POST insert record

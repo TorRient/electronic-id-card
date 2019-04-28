@@ -7,11 +7,11 @@ var User = new Schema(
     {
         user_name: {type:String, require: true, trim: true},
         password: {type: String, require: true},
-        first_name: {type: String, trim : true},
-        last_name: {type: String, trim: true},
-        adress: {type: String, trim: true},
+        firstname: {type: String, trim : true},
+        lastname: {type: String, trim: true},
+        address: {type: String, trim: true},
         city: {type: String, trim: true},
-        about_me: {type: String, trim: true},
+        aboutme: {type: String, trim: true},
         email: {type: String, trim: true},
         phone: {type: Number, trim: true},
         workplace: {type: String, trim: true}
@@ -27,5 +27,9 @@ User.methods.generateHash = function (password) {
 User.methods.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 };
+
+User.virtual('fullname').get(function() {
+    return (this.firstname + ' ' + this.lastname);
+});
 
 module.exports = mongoose.model('User', User);
