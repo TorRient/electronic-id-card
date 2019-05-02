@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Insert Record
+    Search ID
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
     name='viewport' />
@@ -113,25 +113,10 @@
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-          <form action="/insertRecord" method="post">
+          <form action="/searchID/<%= data.so_cmt %>" method="POST">
             <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-10 offset-1">
                 <div class="card">
-                  <%if (conditional == 1) { %>
-                  <div class="alert alert-danger" role="alert">
-                    Các trường thông tin không được bỏ trống!
-                  </div>
-                  <% } %>
-                  <%if (conditional == 2) { %>
-                  <div class="alert alert-danger" role="alert">
-                    Số chứng minh thư đã tồn tại!
-                  </div>
-                  <% } %>
-                  <%if (conditional == 3) { %>
-                  <div class="alert alert-success" role="alert">
-                    Thêm thành công!
-                  </div>
-                  <% } %>
                   <div class="card-header card-header-primary">
                     <h4 class="card-title">Insert Record</h4>
                     <p class="card-category">Complete Record</p>
@@ -142,13 +127,15 @@
                         <div class="col-md-7">
                           <div class="form-group">
                             <label class="bmd-label-floating">Họ và tên</label>
-                            <input type="text" id="ten" name="ten" class="form-control" required>
+                            <input type="text" id="ten" name="ten" class="form-control" value="<%= data.ten %>"
+                              required>
                           </div>
                         </div>
                         <div class="col-md-5">
                           <div class="form-group">
                             <label class="bmd-label-floating">Số CMND</label>
-                            <input type="number" id="so_cmt" name="so_cmt" class="form-control">
+                            <input type="number" id="so_cmt" name="so_cmt" value="<%= data.so_cmt %>" class="
+                              form-control">
                           </div>
                         </div>
                       </div>
@@ -156,13 +143,15 @@
                         <div class="col-md-6">
                           <div>Ngày sinh :</div>
                           <div class="form-group">
-                            <input type="date" id="ngay_sinh" name="ngay_sinh" class="form-control" required>
+                            <input type="text" id="ngay_sinh" name="ngay_sinh" value="<%= data.ngay_sinh %>" class="
+                              form-control" required>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div>Ngày cấp CMND :</div>
                           <div class="form-group">
-                            <input type="date" id="ngay_cap" name="ngay_cap" class="form-control" required>
+                            <input type="text" id="ngay_cap" name="ngay_cap" value="<%= data.ngay_cap %>" class="
+                              form-control" required>
                           </div>
                         </div>
                       </div>
@@ -171,25 +160,19 @@
                         <div class="col-md-4">
                           <div>Dân tộc</div>
                           <select id="dan_toc" name="dan_toc" class="custom-select">
-                            <% dan_toc.forEach(function(dtoc) { %>
-                            <option value="<%= dtoc.dt %>"><%= dtoc.dt %></option>
-                            <% }); %>
+                            <option value="<%= data.dan_toc %>" selected><%= data.dan_toc %></option>
                           </select>
                         </div>
                         <div class="col-md-4">
                           <div>Tôn giáo</div>
                           <select id="ton_giao" name="ton_giao" class="custom-select">
-                            <% ton_giao.forEach(function(tgiao) { %>
-                            <option value="<%= tgiao.tg %>"><%= tgiao.tg %></option>
-                            <% }); %>
+                            <option value="<%= data.ton_giao %>"><%= data.ton_giao %></option>
                           </select>
                         </div>
                         <div class="col-md-4">
                           <div>Nghề nghiệp</div>
                           <select id="nghe_nghiep" name="nghe_nghiep" class="custom-select">
-                            <% nghe_nghiep.forEach(function(nnghiep) { %>
-                            <option value="<%= nnghiep.nn %>"><%= nnghiep.nn %></option>
-                            <% }); %>
+                            <option value="<%= data.nghe_nghiep %>"><%= data.nghe_nghiep %></option>
                           </select>
                         </div>
                       </div>
@@ -199,7 +182,7 @@
                           <div class="form-group">
                             <label class="bmd-label-floating">Dấu vêt riêng và dị hình</label>
                             <input type="text" id="dau_vet_rieng_va_di_hinh" name="dau_vet_rieng_va_di_hinh"
-                              class="form-control">
+                              value="<%= data.dau_vet_rieng_va_di_hinh %>" class="form-control">
                           </div>
                         </div>
                       </div>
@@ -208,19 +191,17 @@
                       <div class="row">
                         <div class="col-md-4">
                           <select id="tp_nguyen_quan" name="tp_nguyen_quan" class="custom-select">
-                            <option selected disabled>Tỉnh/Thành phố</option>
-                            <option value="Hà Nội">Hà Nội</option>
-                            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                            <option value="<%= tp_nguyen_quan %>" selected><%= tp_nguyen_quan %></option>
                           </select>
                         </div>
                         <div class="col-md-4">
                           <select id="huyen_nguyen_quan" name="huyen_nguyen_quan" class="custom-select">
-                            <option selected disabled>Quận/Huyện</option>
+                            <option value="<%= huyen_nguyen_quan %>" selected><%= huyen_nguyen_quan %></option>
                           </select>
                         </div>
                         <div class="col-md-4">
                           <select id="xa_nguyen_quan" name="xa_nguyen_quan" class="custom-select">
-                            <option selected disabled>Xã/Phường</option>
+                            <option value="<%= xa_nguyen_quan %>" selected><%= xa_nguyen_quan %></option>
                           </select>
                         </div>
                       </div>
@@ -229,19 +210,17 @@
                       <div class="row">
                         <div class="col-md-4">
                           <select id="tp_thuong_tru" name="tp_thuong_tru" class="custom-select">
-                            <option selected disabled>Tỉnh/Thành phố</option>
-                            <option value="Hà Nội">Hà Nội</option>
-                            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                            <option value="<%= tp_thuong_tru %>" selected><%= tp_thuong_tru %></option>
                           </select>
                         </div>
                         <div class="col-md-4">
                           <select id="huyen_thuong_tru" name="huyen_thuong_tru" class="custom-select">
-                            <option selected disabled>Quận/Huyện</option>
+                            <option value="<%= huyen_thuong_tru %>" selected><%= huyen_thuong_tru %></option>
                           </select>
                         </div>
                         <div class="col-md-4">
                           <select id="xa_thuong_tru" name="xa_thuong_tru" class="custom-select">
-                            <option selected disabled>Xã/Phường</option>
+                            <option value="<%= xa_thuong_tru %>" selected><%= xa_thuong_tru %></option>
                           </select>
                         </div>
                       </div>
@@ -250,76 +229,28 @@
                       <div class="row">
                         <div class="col-md-4">
                           <select id="tp_tam_tru" name="tp_tam_tru" class="custom-select">
-                            <option selected disabled>Tỉnh/Thành phố</option>
-                            <option value="Hà Nội">Hà Nội</option>
-                            <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                            <option value="<%= tp_tam_tru %>" selected><%= tp_tam_tru %></option>
                           </select>
                         </div>
                         <div class="col-md-4">
                           <select id="huyen_tam_tru" name="huyen_tam_tru" class="custom-select">
-                            <option selected disabled>Quận/Huyện</option>
+                            <option value="<%= huyen_tam_tru %>" selected><%= huyen_tam_tru %></option>
                           </select>
                         </div>
                         <div class="col-md-4">
                           <select id="xa_tam_tru" name="xa_tam_tru" class="custom-select">
-                            <option selected disabled>Xã/Phường</option>
+                            <option value="<%= xa_tam_tru %>" selected><%= xa_tam_tru %></option>
                           </select>
                         </div>
                       </div>
                       <br>
-                      <!-- <p>Ảnh chân dung</p>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <form>
-                            <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="anh_chan_dung" name="anh_chan_dung"
-                                required>
-                              <label class="custom-file-label" for="customFile">Chọn ảnh</label>
-                            </div>
-                          </form>
-                        </div>
-                      </div> -->
-                      <!-- <br>
-                      <p>Ảnh CMND mặt trước</p>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="anh_cmt_truoc" name="anh_cmt_truoc">
-                            <label class="custom-file-label" for="customFile">Chọn ảnh</label>
-                          </div>
-                        </div>
-                      </div>
                       <br>
-                      <p>Ảnh CMND mặt sau</p>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="anh_cmt_sau" name="anh_cmt_sau">
-                            <label class="custom-file-label" for="customFile">Chọn ảnh</label>
-                          </div>
-                        </div>
-                      </div> -->
-                      <br>
-                      <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                      <button type="submit" class="btn btn-danger pull-right" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Delete</a>
+                      <a href="/editID/<%= data.so_cmt %>">
+                        <button type="button" class="btn btn-info pull-right">Edit</button>
+                      </a>
                     </form>
                   </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="card-body">
-                  <h4 class="card-title">Ảnh chân dung</h4>
-                  <input type='file' id="anh_chan_dung" name="anh_chan_dung" required />
-                  <img id="anh1" src="./images/person.jpg" alt="your image" width="200px" height="200px" />
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title">Ảnh CMND mặt trước</h4>
-                  <input type='file' id="anh_cmt_truoc" name="anh_cmt_truoc" required />
-                  <img id="anh2" src="./images/card.png" alt="your image" width="200px" height="200px" />
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title">Ảnh CMND mặt sau</h4>
-                  <input type='file' id="anh_cmt_sau" name="anh_cmt_sau" required />
-                  <img id="anh3" src="./images/card.png" alt="your image" width="200px" height="200px" />
                 </div>
               </div>
             </div>
@@ -407,9 +338,9 @@
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
   <!-- Chọn thành phố -->
-  <script src="../js/insertRecord/chonthanhpho.js"></script>
+  <!-- <script src="../js/insertRecord/chonthanhpho.js"></script> -->
   <!-- Chọn huyện-->
-  <script src="../js/insertRecord/chonhuyen.js"></script>
+  <!-- <script src="../js/insertRecord/chonhuyen.js"></script> -->
   <!-- Upload Image -->
   <script src="../js/insertRecord/uploadImage.js"></script>
   <!-- Jquery template -->
