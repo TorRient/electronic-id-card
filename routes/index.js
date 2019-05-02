@@ -4,12 +4,27 @@ var validator = require('express-validator');
 var loginController = require('../controller/loginController')
 var passport = require('passport');
 var utils = require('utils');
+var chart = require('../controller/chart');
 
 var insertRecord = require('../controller/insertRecord');
+var chart = require('../controller/chart') ;
+
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', async function (req, res, next) {
+  var result = await chart.load_result();
+  var statistics = JSON.parse(result.statistic_result) ;
+  var percent_age = result.percent_age ;
+  var percent_jobs = result.percent_jobs ;
+  var percent_religious = result.percent_religious ;
+  var date_statistic = result.date_statistic ;
+  res.render('index', {
+    statistic : statistics,
+    percent_age : percent_age,
+    percent_jobs : percent_jobs,
+    percent_religious : percent_religious,
+    date_statistic : date_statistic
+   });
 });
 
 // Xử lý thông tin khi có người thực hiện đăng nhập
@@ -25,9 +40,23 @@ router.post('/login',
   })
 )
 
-router.get('/dashboard', function (req, res, next) {
-  res.render('admin/dashboard', { title: 'Express' });
+router.get('/dashboard', async function (req, res, next) {
+  var result = await chart.load_result();
+  var statistics = JSON.parse(result.statistic_result) ;
+  var percent_age = result.percent_age ;
+  var percent_jobs = result.percent_jobs ;
+  var percent_religious = result.percent_religious ;
+  var date_statistic = result.date_statistic ;
+  res.render('admin/dashboard', {
+    statistic : statistics,
+    percent_age : percent_age,
+    percent_jobs : percent_jobs,
+    percent_religious : percent_religious,
+    date_statistic : date_statistic
+   });
+
 });
+router.use('/runStatistic',chart.run_statistic);
 
 router.get('/userProfile', isLoggedIn, function (req, res, next) {
   res.render('admin/userProfile', { title: 'Express' });
