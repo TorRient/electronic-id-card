@@ -20,6 +20,7 @@
 </head>
 
 <body class="">
+
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
       <!--
@@ -204,18 +205,29 @@
                         </div>
                       </div>
                       <div class="col-md-4">
-                        <select id="huyen_nguyen_quan" name="huyen_nguyen_quan" class="custom-select">
-                          <option selected disabled>Quận/Huyện</option>
-                        </select>
-                      </div>
-                      <div class="col-md-4">
-                          <select id="tp_nguyen_quan" name="tp_nguyen_quan" class="custom-select">
-                            <option selected disabled>Tỉnh/Thành phố</option>
+                        <div class="form-group">
+                          <select id="tp_nguyen_quan" name="city" class="custom-select">
+                            <% if (!profile.city) {%>
+                              <option selected disabled>Tỉnh/Thành phố</option>
+                            <% } else { %>   
+                              <option selected disabled value="<%= profile.city %>"><%= profile.city %></option>
+                            <% } %>
                             <option value="Hà Nội">Hà Nội</option>
                             <option value="Hồ Chí Minh">Hồ Chí Minh</option>
                           </select>
                         </div>
-
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <select id="huyen_nguyen_quan" name="district" class="custom-select">
+                            <% if (!profile.district) {%>
+                              <option selected disabled>Quận/Huyện</option>
+                            <% } else { %>
+                              <option selected disabled value="<%= profile.district %>"><%= profile.district %></option>
+                            <% } %>
+                          </select>
+                        </div>
+                      </div>  
                     </div>
                     <div class="row">
                       <div class="col-md-12">

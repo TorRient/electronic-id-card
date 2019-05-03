@@ -11,6 +11,7 @@ var User = new Schema(
         lastname: {type: String, trim: true},
         address: {type: String, trim: true},
         city: {type: String, trim: true},
+        district: {type: String, trim: true},
         aboutme: {type: String, trim: true},
         email: {type: String, trim: true},
         phone: {type: Number, trim: true},
