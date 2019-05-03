@@ -21,6 +21,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+  <!-- file này css cho mục chú thích trong bảng thống kê-->
+  <link rel="stylesheet" type="text/css" href="css/dashboard.css">
 
 </head>
 
@@ -137,7 +139,12 @@
                     <div class="ct-chart" style="height:100%"  id="table_age"></div>
                   </div>
                   <div class="card-body">
-                    <h4 class="card-title">Bảng thống kê tuổi</h4>
+                    <h4 class="card-title">Bảng thống kê tuổi
+                      <div class = "anotation">
+                        <div class="anotation_term" style="background: #e64033"> </div> <h6 style="float:left;">&nbsp; Nam &nbsp;</h6>
+                        <div class="anotation_term" style="background: #d8eede"> </div> <h6 style="float:left;">&nbsp; Nữ  &nbsp;</h6>
+                      </div>
+                    </h4>
                   </div>
                   <div class="card-footer">
                     <div class="stats">
@@ -155,16 +162,25 @@
                       <div class="card-body">
                         <h4 id="percent_working_age" ></h4>
                         <h4 id="percent_out_of_work" ></h4>
+                        <h4 id="percent_man" ></h4>
+                        <h4 id="percent_woman" ></h4>
                       </div>
                     </div>
                   </div>
               <div class="col-md-12" style="height:425px">
                 <div class="card card-chart" style="height:425px">
-                  <div class="card-header card-header-danger" style="height:75%;padding: 0px;">
+                  <div class="card-header card-header-danger" style="height:75%;padding: 0px;background: white;">
                     <div class="ct-chart" style="height:100%" id="table_religious"></div>
                   </div>
                   <div class="card-body">
-                    <h4 class="card-title">Bảng thống kê tôn giáo</h4>
+                    <h4 class="card-title">Bảng thống kê tôn giáo
+                        <div class = "anotation">
+                            <div class="anotation_term" style="background: #5dbcd5;"> </div> <h6 style="float:left;">&nbsp; Không &nbsp;</h6>
+                            <div class="anotation_term" style="background:#e64033;"> </div> <h6 style="float:left;">&nbsp; Phật giáo  &nbsp;</h6>
+                            <div class="anotation_term" style="background: #ec9620;"> </div> <h6 style="float:left;">&nbsp; Thiên chúa giáo &nbsp;</h6>
+                            <div class="anotation_term"> </div> <h6 style="float:left;">&nbsp; Hồi giáo  &nbsp;</h6>
+                        </div>
+                    </h4>
                   </div>
                   <div class="card-footer">
                     <div class="stats">

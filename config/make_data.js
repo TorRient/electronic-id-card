@@ -7,7 +7,7 @@ var province = require('../models/province') ;
 
 exports.run = async function(req,res,next){
     res.send("Đang tiến hành tạo dữ liệu .....");
-    var list_population = await make_person(100000) ;
+    var list_population = await make_person(20000) ;
     try {
         identificationcards.create(list_population);
     } catch (error) {
@@ -33,7 +33,7 @@ async function make_person(population){
 
     for (let i = 0; i < boy ; i++) {
         var person =  {
-            so_cmt: 100000000+i+30000+10,
+            so_cmt: 100000000+i,
             ten: random.get_boyname() ,
             ngay_sinh: random.get_date() ,
             ngay_mat: null ,
@@ -56,7 +56,7 @@ async function make_person(population){
     }
     for (let i = boy; i < population ; i++) {
         var person =  {
-            so_cmt: 100000000+i+30000+10,
+            so_cmt: 100000000+i,
             ten: random.get_girlname() ,
             ngay_sinh: random.get_date() ,
             ngay_mat: null ,

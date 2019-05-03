@@ -1,6 +1,18 @@
 var identificationcards = require('../models/identification_card');
 var family = require('../models/family');
 
+// hàm này chỉ mục đích test
+exports.count_girl = function(callback){
+	identificationcards.countDocuments({gioi_tinh : "Nữ"},function(err,count){
+		if (err) {
+			console.log(err) ;
+		} else {
+			callback(count) ;
+		}		
+	}) ;
+};
+
+
 // hàm này tìm kiếm một người theo chứng minh thư
 exports.find_person_by_id = function(so_cmt,callback){
 	identificationcards.findOne({so_cmt : so_cmt},function(err,person){

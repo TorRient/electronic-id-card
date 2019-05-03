@@ -27,8 +27,20 @@ exports.get_address = function(list_province){
 }
 
 exports.get_jobs = function (nghe_nghiep){
-    var x = nghe_nghiep.length ;
-    return nghe_nghiep[randoms(x)].nn ;
+    var x = randoms(230) ;
+    if (x<100) {
+        return nghe_nghiep[randoms(10)].nn ;
+    } else if (x<140) {
+        return nghe_nghiep[0].nn ;
+    } else if (x < 170) {
+        return nghe_nghiep[3].nn ;
+    } else if (x<200) {
+        return nghe_nghiep[4].nn ;
+    } else if (x<210) {
+        return nghe_nghiep[7].nn ;
+    } else {
+        return nghe_nghiep[9].nn ;
+    }
 }
 
 exports.get_religious = function(ton_giao){

@@ -8,7 +8,6 @@ var chart = require('../controller/chart');
 
 var IdentificationCard = require('../models/identification_card');
 var insertRecord = require('../controller/insertRecord');
-var chart = require('../controller/chart') ;
 
 var searchID = require('../controller/searchID');
 var editID = require('../controller/editID');

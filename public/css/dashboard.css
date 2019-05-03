@@ -1,3 +1,18 @@
+.anotation{
+  display: inline;
+  float: right ;
+  height: 20px;
+}
+.anotation_term{
+  display: block;
+  float: left;
+  height: 15px;
+  position: relative ;
+  width: 15px ;
+  background: black;
+}
+
+
 #warning{
     display: none ;
     background: rgb(0,0,0);

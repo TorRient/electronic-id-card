@@ -9,6 +9,14 @@ exports.find_person_by_id = function(req,res,next){
     
 };
 
+exports.count_girl = function(req,res,next){
+    statistic.count_girl(function(count){
+		res.send("Số giới tính nữ là : " + String(count));
+        res.end();
+    });
+    
+};
+
 exports.statistics = async function(province){
 	var average_age = await exports.average_age(province);
 	var percent_poor_family = await exports.poor_family();
