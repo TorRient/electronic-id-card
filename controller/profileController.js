@@ -5,21 +5,16 @@ exports.get_profile = (req, res, next) => {
         .exec(function (err, profile) {
             if (err) 
                 return next(err)
-        console.log(profile)
-        res.render('admin/userProfile', {title: 'Profile', profile: profile} )
+        res.render('admin/userProfile', {title: 'Profile', username: req.user.user_name, condition : 0, profile: profile} )
     })
 }
 
 exports.update_profile = (req, res, next) => {
     User.findByIdAndUpdate(req.user.id, req.body, (err, user) => {
         if (err) {
-            return res
-                .status(500)
-                .send({error: "unsuccessful"})
+            return res.render('admin/userProfile', {title: 'Profile', condition : 500, profile: req.body })
         };
-        console.log(req.body.city)
-        console.log(req.body.district)
-        res.render('admin/userProfile', {title: 'Profile', message: req.flash('Update successful'), profile: req.body })
+        res.render('admin/userProfile', {title: 'Profile', username: req.user.user_name, condition : 1, profile: req.body })
     });
 }
 

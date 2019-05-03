@@ -31,12 +31,12 @@ router.get('/userProfile', isLoggedIn, profileController.get_profile);
 
 router.post('/userProfile', isLoggedIn, profileController.update_profile);
 
-router.get('/dashboard', function (req, res, next) {
-  res.render('admin/dashboard', { title: 'Express' });
+router.get('/dashboard',isLoggedIn, function (req, res, next) {
+  res.render('admin/dashboard', { username: req.user.user_name });
 });
 
 // POST insert record
-router.post('/insertRecord', insertRecord.insertRecord);
+router.post('/insertRecord',isLoggedIn, insertRecord.insertRecord);
 
 // GET insert
 var dan_toc_cfg = require('../config/dan_toc');
