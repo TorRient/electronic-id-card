@@ -3,8 +3,8 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <!-- <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png"> -->
+  <link rel="icon" type="image/jpg" href="../images/covn.jpg">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Search ID
@@ -30,8 +30,8 @@
         Tip 2: you can also add an image using data-image tag
     -->
       <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
+        <a class="simple-text logo-normal">
+          System ID
         </a>
       </div>
       <div class="sidebar-wrapper">
@@ -48,6 +48,12 @@
               <p>User Profile</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/insertRecord">
+              <i class="material-icons">person_add</i>
+              <p>Insert Record</p>
+            </a>
+          </li>
           <li class="nav-item ">
             <a class="nav-link" href="./tables.html">
               <i class="material-icons">content_paste</i>
@@ -58,6 +64,12 @@
             <a class="nav-link" href="./map.html">
               <i class="material-icons">location_ons</i>
               <p>Maps</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" onclick="run_statistic();" id="box-run-statistic">
+              <i class="material-icons">show_chart</i>
+              <p>Run statistic</p>
             </a>
           </li>
         </ul>
@@ -82,14 +94,11 @@
               <div class="input-group no-border">
                 <input type="number" name="search" class="form-control" placeholder="Search ID..." required>
                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                  <i class="material-icons">search</i>
+                  <i class="material-icons">search </i>
                   <div class="ripple-container"></div>
                 </button>
               </div>
             </form>
-            <a class="nav-link" href="/insertRecord">
-              <i class="material-icons">person add</i>
-            </a>
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
                 <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true"
@@ -118,8 +127,8 @@
               <div class="col-md-10 offset-1">
                 <div class="card">
                   <div class="card-header card-header-primary">
-                    <h4 class="card-title">Insert Record</h4>
-                    <p class="card-category">Complete Record</p>
+                    <h4 class="card-title">Search ID</h4>
+                    <p class="card-category">Info Record</p>
                   </div>
                   <div class="card-body">
                     <form>
@@ -182,7 +191,8 @@
                           <div class="form-group">
                             <label class="bmd-label-floating">Dấu vêt riêng và dị hình</label>
                             <input type="text" id="dau_vet_rieng_va_di_hinh" name="dau_vet_rieng_va_di_hinh"
-                              value="<%= data.dau_vet_rieng_va_di_hinh %>" class="form-control" style="background: transparent" readonly>
+                              value="<%= data.dau_vet_rieng_va_di_hinh %>" class="form-control"
+                              style="background: transparent" readonly>
                           </div>
                         </div>
                       </div>
@@ -245,10 +255,11 @@
                       </div>
                       <br>
                       <br>
-                      <button type="submit" class="btn btn-danger pull-right" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Delete</a>
-                      <a href="/editID/<%= data.so_cmt %>">
-                        <button type="button" class="btn btn-info pull-right">Edit</button>
-                      </a>
+                      <button type="submit" class="btn btn-danger pull-right"
+                        onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Delete</a>
+                        <a href="/editID/<%= data.so_cmt %>">
+                          <button type="button" class="btn btn-info pull-right">Edit</button>
+                        </a>
                     </form>
                   </div>
                 </div>
@@ -262,22 +273,22 @@
           <nav class="float-left">
             <ul>
               <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
+                <a href="https://github.com/TorRient/electronic-id-card">
+                  SYSTEM ID
                 </a>
               </li>
               <li>
-                <a href="https://creative-tim.com/presentation">
+                <a href="https://github.com/TorRient/electronic-id-card">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="http://blog.creative-tim.com">
+                <a href="https://github.com/TorRient/electronic-id-card">
                   Blog
                 </a>
               </li>
               <li>
-                <a href="https://www.creative-tim.com/license">
+                <a href="https://github.com/TorRient/electronic-id-card">
                   Licenses
                 </a>
               </li>
@@ -287,8 +298,8 @@
             &copy;
             <script>
               document.write(new Date().getFullYear())
-            </script>, made with <i class="material-icons">favorite</i> by
-            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+            </script>, Design <i class="material-icons">favorite</i> by
+            <a href="https://github.com/TorRient/electronic-id-card" target="_blank">ENDGAME</a> group.
           </div>
         </div>
       </footer>
