@@ -1,8 +1,8 @@
 var User = require('../models/user')
 
 var admin = {
-    user_name: "Admin User",
-    password: "20162569"
+    user_name: "Thuyen",
+    password: "thuyen1998"
 }
 
 console.log(admin)
