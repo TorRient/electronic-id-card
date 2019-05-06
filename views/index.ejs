@@ -21,6 +21,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
+  <!-- file này css cho mục chú thích trong bảng thống kê-->
+  <link rel="stylesheet" type="text/css" href="css/dashboard.css">
 
 </head>
 
@@ -60,7 +62,7 @@
     </header>
 
     <!-- Page Features -->
-    <div class="content">
+    <div class="content" style="padding: 30px 15px;">
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
@@ -75,7 +77,7 @@
                 <div class="card-footer">	
                   <div class="stats">
                     <i class="material-icons text-danger">warning</i>
-                    <a href="#pablo">Cập nhật ngày : 31/01/1998</a>
+                    <a href="#pablo">Cập nhật ngày : <%= date_statistic %></a>
                   </div>
                 </div>
               </div>
@@ -91,7 +93,7 @@
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">date_range</i> Last 24 Hours
+                    <i class="material-icons">date_range</i><%= date_statistic %>
                   </div>
                 </div>
               </div>
@@ -103,11 +105,11 @@
                     <i class="material-icons">info_outline</i>
                   </div>
                   <p class="card-category">Tuổi trung bình</p>
-                  <h3 class="card-title">35</h3>
+                  <h3 class="card-title"><%= statistic["average_age"] %></h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">local_offer</i> Tracked from Github
+                    <i class="material-icons">local_offer</i> <%= date_statistic %>
                   </div>
                 </div>
               </div>
@@ -119,58 +121,88 @@
                     <i class="fa fa-twitter"></i>
                   </div>
                   <p class="card-category">Hộ nghèo</p>
-                  <h3 class="card-title">12245</h3>
+                  <h3 class="card-title"><%= statistic["poor_familys"] %> hộ - <%= statistic["percent_poor_family"] %> %</h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">update</i> Just Updated
+                    <i class="material-icons">update</i> <%= date_statistic %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="min-height:600px">
+            <div class= "col-md-6" style="min-height:600px">
+              <div class="col-md-12" style="height:98%">
+                <div class="card card-chart" style="height:97%">
+                  <div class="card-header card-header-success" style="height:100%">
+                    <div class="ct-chart" style="height:100%"  id="table_age"></div>
+                  </div>
+                  <div class="card-body">
+                    <h4 class="card-title">Bảng thống kê tuổi
+                      <div class = "anotation">
+                        <div class="anotation_term" style="background: #e64033"> </div> <h6 style="float:left;">&nbsp; Nam &nbsp;</h6>
+                        <div class="anotation_term" style="background: #d8eede"> </div> <h6 style="float:left;">&nbsp; Nữ  &nbsp;</h6>
+                      </div>
+                    </h4>
+                  </div>
+                  <div class="card-footer">
+                    <div class="stats">
+                      <i class="material-icons">access_time</i> <%= date_statistic %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div  class = "col-md-6">
+                <div class="col-md-12" >
+                    <div class="card" style="min-height:230px">
+                      <div class="card-header card-header-tabs card-header-primary">
+                      </div>
+                      <div class="card-body">
+                        <h4 id="percent_working_age" ></h4>
+                        <h4 id="percent_out_of_work" ></h4>
+                        <h4 id="percent_man" ></h4>
+                        <h4 id="percent_woman" ></h4>
+                      </div>
+                    </div>
+                  </div>
+              <div class="col-md-12" style="height:425px">
+                <div class="card card-chart" style="height:425px">
+                  <div class="card-header card-header-danger" style="height:75%;padding: 0px;background: white;">
+                    <div class="ct-chart" style="height:100%" id="table_religious"></div>
+                  </div>
+                  <div class="card-body">
+                    <h4 class="card-title">Bảng thống kê tôn giáo
+                        <div class = "anotation">
+                            <div class="anotation_term" style="background: #5dbcd5;"> </div> <h6 style="float:left;">&nbsp; Không &nbsp;</h6>
+                            <div class="anotation_term" style="background:#e64033;"> </div> <h6 style="float:left;">&nbsp; Phật giáo  &nbsp;</h6>
+                            <div class="anotation_term" style="background: #ec9620;"> </div> <h6 style="float:left;">&nbsp; Thiên chúa giáo &nbsp;</h6>
+                            <div class="anotation_term"> </div> <h6 style="float:left;">&nbsp; Hồi giáo  &nbsp;</h6>
+                        </div>
+                    </h4>
+                  </div>
+                  <div class="card-footer">
+                    <div class="stats">
+                      <i class="material-icons">access_time</i> <%= date_statistic %>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
-              <div class="card card-chart">
-                <div class="card-header card-header-success">
-                  <div class="ct-chart" id="dailySalesChart"></div>
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title">Bảng thống kê tuổi</h4>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">access_time</i> updated 4 minutes ago
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card card-chart">
-                <div class="card-header card-header-warning">
-                  <div class="ct-chart" id="websiteViewsChart"></div>
+            <div class="col-md-12" style="height:425px">
+              <div class="card card-chart" style="height:425px">
+                <div class="card-header card-header-warning ct-chart" style="height: 80%;padding: 0px;" >
+                  <div class="ct-chart" style="height:98%;" id="table_jobs"></div>
                 </div>
                 <div class="card-body">
                   <h4 class="card-title">Bảng thống kê nghề nghiệp</h4>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">access_time</i> campaign sent 2 days ago
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card card-chart">
-                <div class="card-header card-header-danger">
-                  <div class="ct-chart" id="completedTasksChart"></div>
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title">Bảng thống kê dân tộc</h4>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">access_time</i> campaign sent 2 days ago
+                    <i class="material-icons">access_time</i> <%= date_statistic %>
                   </div>
                 </div>
               </div>
@@ -207,6 +239,19 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script language="javascript" src="js/dashboard.js" ></script>
+  <!-- file này chứa hàm vẽ biểu đồ và chứa hàm điều hướng chạy thống kê -->
+
+  <!-- một số dòng html phục vụ cho việc truyền dữ liệu -->
+  <p id="percent_age" style="visibility: hidden" > <%=percent_age%></p>
+  <p id="percent_jobs" style="visibility: hidden" > <%=percent_jobs%></p>
+  <p id="percent_religious" style="visibility: hidden" > <%=percent_religious%></p>
+  <!-- một số dòng html phục vụ cho việc truyền dữ liệu -->
+
+  <!-- vẽ các biểu đồ , hàm này ở public/js/dashboard.js -->
+  <script>
+    draw_chart();
+  </script>
 </body>
 
 </html>

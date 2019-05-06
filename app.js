@@ -12,6 +12,7 @@ var validator = require('express-validator');
 var settings = require('./config/settings');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var test = require('./routes/test');
 
 var app = express();
 //Set up mongoose connection
@@ -44,6 +45,7 @@ app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/test',test);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

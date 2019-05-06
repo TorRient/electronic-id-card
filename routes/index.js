@@ -4,9 +4,12 @@ var validator = require('express-validator');
 var loginController = require('../controller/loginController')
 var passport = require('passport');
 var utils = require('utils');
+var chart = require('../controller/chart');
 
 var IdentificationCard = require('../models/identification_card');
 var insertRecord = require('../controller/insertRecord');
+var profileController = require('../controller/profileController')
+
 var searchID = require('../controller/searchID');
 var editID = require('../controller/editID');
 
@@ -18,14 +21,24 @@ var ton_giao = ton_giao_cfg;
 var nghe_nghiep = nghe_nghiep_cfg
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', async function (req, res, next) {
+  var result = await chart.load_result();
+  var statistics = JSON.parse(result.statistic_result) ;
+  var percent_age = result.percent_age ;
+  var percent_jobs = result.percent_jobs ;
+  var percent_religious = result.percent_religious ;
+  var date_statistic = result.date_statistic ;
+  res.render('index', {
+    statistic : statistics,
+    percent_age : percent_age,
+    percent_jobs : percent_jobs,
+    percent_religious : percent_religious,
+    date_statistic : date_statistic
+   });
 });
 
 // Xử lý thông tin khi có người thực hiện đăng nhập
-router.get('/login', function (req, res, next) {
-  res.render('login', { title: 'Express', message: req.flash('loginMessage') });
-});
+router.get('/login', loginController.get_login);
 
 router.post('/login',
   passport.authenticate("local-login", {
@@ -33,20 +46,34 @@ router.post('/login',
     failureRedirect: '/login',
     failureFlash: true
   })
-)
+);
 
-router.get('/dashboard',isLoggedIn, function (req, res, next) {
-  res.render('admin/dashboard', { title: 'Express' });
-});
+router.get('/logout', loginController.logout);
 
-router.get('/userProfile',isLoggedIn, function (req, res, next) {
-  res.render('admin/userProfile', { title: 'Express' });
-});
+// Xử lý thông tin khi admin lấy profile
+router.get('/userProfile', isLoggedIn, profileController.get_profile);
 
-router.get('/logout', function (req, res) {
-  req.logout();
-  res.redirect('/');
-});
+router.get('/dashboard',isLoggedIn, async function (req, res, next) {
+  var result = await chart.load_result();
+  var statistics = JSON.parse(result.statistic_result) ;
+  var percent_age = result.percent_age ;
+  var percent_jobs = result.percent_jobs ;
+  var percent_religious = result.percent_religious ;
+  var date_statistic = result.date_statistic ;
+  res.render('admin/dashboard', {
+    statistic : statistics,
+    percent_age : percent_age,
+    percent_jobs : percent_jobs,
+    percent_religious : percent_religious,
+    date_statistic : date_statistic
+   })
+  });
+
+
+router.use('/runStatistic',chart.run_statistic);
+
+router.post('/userProfile', isLoggedIn, profileController.update_profile);
+
 
 // GET search
 router.get('/searchID',isLoggedIn, searchID.searchID);
@@ -93,7 +120,7 @@ router.get('/editID/:id',isLoggedIn, function (req, res) {
 router.post('/editID/:id', editID.editID);
 
 // POST insert record
-router.post('/insertRecord', insertRecord.insertRecord);
+router.post('/insertRecord',isLoggedIn, insertRecord.insertRecord);
 
 // GET insert
 router.get('/insertRecord',isLoggedIn, function (req, res) {

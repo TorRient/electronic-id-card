@@ -38,3 +38,12 @@ passport.use('local-login', new LocalStrategy({
         return done(null, user);
     });
 }));
+
+exports.get_login = (req, res, next) => {
+    res.render('login', { title: 'Express', message: req.flash('loginMessage') });
+}
+
+exports.logout = (req, res, next) => {
+  req.logout();
+  res.redirect('/');
+}
