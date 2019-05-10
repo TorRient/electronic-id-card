@@ -15,7 +15,6 @@ var usersRouter = require('./routes/users');
 var test = require('./routes/test');
 
 var app = express();
-
 //Set up mongoose connection
 var mongoose = require('mongoose');
 mongoose.connect(settings.hostDB, { useNewUrlParser: true });

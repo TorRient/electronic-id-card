@@ -3,15 +3,17 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <!-- <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png"> -->
+  <link rel="icon" type="image/jpg" href="../images/covn.jpg">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Dashboard by Creative Tim
+    User Profile
   </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+    name='viewport' />
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="../assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
@@ -25,25 +27,25 @@
 <body class="">
 
   <%if (condition === 1) {%>
-    <script>
-      Swal.fire({
-        type: 'success',
-        title: 'Cập nhật thông tin thành công',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    </script>
+  <script>
+    Swal.fire({
+      type: 'success',
+      title: 'Cập nhật thông tin thành công',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  </script>
   <% } %>
 
   <%if (condition === 500) {%>
-    <script>
-      Swal.fire({
-        type: 'error',
-        title: 'Cập nhật thông tin không thành công',
-        showConfirmButton: false,
-        timer: 2000
-      })
-    </script>
+  <script>
+    Swal.fire({
+      type: 'error',
+      title: 'Cập nhật thông tin không thành công',
+      showConfirmButton: false,
+      timer: 2000
+    })
+  </script>
   <% } %>
 
   <div class="wrapper ">
@@ -53,9 +55,9 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
-    <div class="logo">
+      <div class="logo">
         <a class="simple-text logo-normal">
-          <%= username %>
+          System ID
         </a>
       </div>
       <div class="sidebar-wrapper">
@@ -72,6 +74,12 @@
               <p>User Profile</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/insertRecord">
+              <i class="material-icons">person_add</i>
+              <p>Insert Record</p>
+            </a>
+          </li>
           <li class="nav-item ">
             <a class="nav-link" href="./tables.html">
               <i class="material-icons">content_paste</i>
@@ -84,6 +92,12 @@
               <p>Maps</p>
             </a>
           </li>
+          <li class="nav-item ">
+            <a class="nav-link" onclick="run_statistic();" id="box-run-statistic">
+              <i class="material-icons">show_chart</i>
+              <p>Run statistic</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -94,7 +108,8 @@
           <div class="navbar-wrapper">
             <a class="navbar-brand" href="#pablo">User Profile</a>
           </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+            aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
@@ -103,7 +118,7 @@
           <div class="collapse navbar-collapse justify-content-end">
             <form class="navbar-form">
               <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
+                <input type="text" value="" class="form-control" placeholder="Search ID...">
                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
                   <i class="material-icons">search</i>
                   <div class="ripple-container"></div>
@@ -111,16 +126,9 @@
               </div>
             </form>
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="./dashboard">
-                  <i class="material-icons">dashboard</i>
-                  <p class="d-lg-none d-md-block">
-                    Stats
-                  </p>
-                </a>
-              </li>
               <li class="nav-item dropdown">
-                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
                   <i class="material-icons">person</i>
                   <p class="d-lg-none d-md-block">
                     Account
@@ -148,38 +156,38 @@
                 </div>
                 <div class="card-body">
                   <form method="POST" class="readonly">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label class="bmd-label-floating">Fist Name</label>
-                            <% if (!profile.firstname) {%>
-                              <input type="text" class="form-control" name="firstname" />
-                            <% } else { %>
-                              <input type="text" class="form-control" name="firstname" value="<%= profile.firstname %>"/>
-                            <% } %>
-                            <!-- <input type="text" class="form-control" name="firstname"> -->
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label class="bmd-label-floating">Last Name</label>
-                            <% if (!profile.lastname) {%>
-                              <input type="text" class="form-control" name="lastname" />
-                            <% } else { %>
-                              <input type="text" class="form-control" name="lastname" value="<%= profile.lastname %>"/>
-                            <% } %>
-                            <!-- <input type="text" class="form-control" name="lastname"> -->
-                          </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Fist Name</label>
+                          <% if (!profile.firstname) {%>
+                          <input type="text" class="form-control" name="firstname" />
+                          <% } else { %>
+                          <input type="text" class="form-control" name="firstname" value="<%= profile.firstname %>" />
+                          <% } %>
+                          <!-- <input type="text" class="form-control" name="firstname"> -->
                         </div>
                       </div>
-                    <div class="row">      
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Last Name</label>
+                          <% if (!profile.lastname) {%>
+                          <input type="text" class="form-control" name="lastname" />
+                          <% } else { %>
+                          <input type="text" class="form-control" name="lastname" value="<%= profile.lastname %>" />
+                          <% } %>
+                          <!-- <input type="text" class="form-control" name="lastname"> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Phone</label>
                           <% if (!profile.phone) {%>
-                            <input type="text" class="form-control" name="phone" />
+                          <input type="number" class="form-control" name="phone" />
                           <% } else { %>
-                            <input type="text" class="form-control" name="phone" value="<%= profile.phone %>"/>
+                          <input type="number" class="form-control" name="phone" value="<%= profile.phone %>" />
                           <% } %>
                           <!-- <input type="text" class="form-control" name="phone"> -->
                         </div>
@@ -188,23 +196,23 @@
                         <div class="form-group">
                           <label class="bmd-label-floating">Email address</label>
                           <% if (!profile.email) {%>
-                            <input type="text" class="form-control" name="email" />
+                          <input type="text" class="form-control" name="email" />
                           <% } else { %>
-                            <input type="text" class="form-control" name="email" value="<%= profile.email %>"/>
+                          <input type="text" class="form-control" name="email" value="<%= profile.email %>" />
                           <% } %>
                           <!-- <input type="email" class="form-control" name="email"> -->
                         </div>
                       </div>
                     </div>
-                    
+
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Address</label>
                           <% if (!profile.address) {%>
-                            <input type="text" class="form-control" name="address" />
+                          <input type="text" class="form-control" name="address" />
                           <% } else { %>
-                            <input type="text" class="form-control" name="address" value="<%= profile.address %>"/>
+                          <input type="text" class="form-control" name="address" value="<%= profile.address %>" />
                           <% } %>
                         </div>
                       </div>
@@ -212,9 +220,9 @@
                         <div class="form-group">
                           <select id="tp_nguyen_quan" name="city" class="custom-select">
                             <% if (!profile.city) {%>
-                              <option selected disabled>Tỉnh/Thành phố</option>
-                            <% } else { %>   
-                              <option selected value="<%= profile.city %>"><%= profile.city %></option>
+                            <option selected disabled>Tỉnh/Thành phố</option>
+                            <% } else { %>
+                            <option selected value="<%= profile.city %>"><%= profile.city %></option>
                             <% } %>
                             <option value="Hà Nội">Hà Nội</option>
                             <option value="Hồ Chí Minh">Hồ Chí Minh</option>
@@ -225,22 +233,22 @@
                         <div class="form-group">
                           <select id="huyen_nguyen_quan" name="district" class="custom-select">
                             <% if (!profile.district) {%>
-                              <option selected disabled>Quận/Huyện</option>
+                            <option selected disabled>Quận/Huyện</option>
                             <% } else { %>
-                              <option selected value="<%= profile.district %>"><%= profile.district %></option>
+                            <option selected value="<%= profile.district %>"><%= profile.district %></option>
                             <% } %>
                           </select>
                         </div>
-                      </div>  
+                      </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
                           <label class="bmd-label-floating">Workplace</label>
                           <% if (!profile.workplace) {%>
-                            <input type="text" class="form-control" name="workplace" />
+                          <input type="text" class="form-control" name="workplace" />
                           <% } else { %>
-                            <input type="text" class="form-control" name="workplace" value="<%= profile.workplace %>"/>
+                          <input type="text" class="form-control" name="workplace" value="<%= profile.workplace %>" />
                           <% } %>
                         </div>
                       </div>
@@ -251,9 +259,9 @@
                           <div class="form-group">
                             <label class="bmd-label-floating">About Me</label>
                             <% if (!profile.aboutme) {%>
-                              <textarea class="form-control" name="aboutme" rows="5"></textarea>
+                            <textarea class="form-control" name="aboutme" rows="5"></textarea>
                             <% } else { %>
-                              <textarea class="form-control" name="aboutme" rows="5"><%=profile.aboutme %></textarea>
+                            <textarea class="form-control" name="aboutme" rows="5"><%=profile.aboutme %></textarea>
                             <% } %>
                             <!-- <textarea class="form-control" rows="5"></textarea> -->
                           </div>
@@ -261,35 +269,54 @@
                       </div>
                     </div>
                     <button type="button" class="btn btn-primary pull-right" id="edit-profile">Edit Profile</button>
-                    <button type="submit" class="btn btn-primary pull-right" id="update-profile" style="display: none">Update Profile</button>
+                    <button type="submit" class="btn btn-primary pull-right" id="update-profile"
+                      style="display: none">Update Profile</button>
                     <div class="clearfix"></div>
                   </form>
                 </div>
               </div>
             </div>
-            <!-- <div class="col-md-4">
-              <div class="card card-profile">
-                <div class="card-avatar">
-                  <a href="#pablo">
-                    <img class="img" src="../assets/img/faces/marc.jpg" />
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-                  <h4 class="card-title">Alec Thompson</h4>
-                  <p class="card-description">
-                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                  </p>
-                  <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
-                </div>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
+      <footer class="footer">
+        <div class="container-fluid">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="https://github.com/TorRient/electronic-id-card">
+                  SYSTEM ID
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/TorRient/electronic-id-card">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/TorRient/electronic-id-card">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/TorRient/electronic-id-card">
+                  Licenses
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, Design <i class="material-icons">favorite</i> by
+            <a href="https://github.com/TorRient/electronic-id-card" target="_blank">ENDGAME</a> group.
+          </div>
+        </div>
+      </footer>
     </div>
   </div>
-  
+
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>

@@ -129,9 +129,8 @@ router.get('/insertRecord',isLoggedIn, function (req, res) {
     ton_giao: ton_giao,
     nghe_nghiep: nghe_nghiep,
     conditional: 0
-  });
+  });``
 });
-
 // route middleware để kiểm tra một user đã đăng nhập hay chưa?
 function isLoggedIn(req, res, next) {
   // Nếu một user đã xác thực, cho đi tiếp
