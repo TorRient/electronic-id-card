@@ -128,13 +128,12 @@
             <p>Thống kê theo :</p>
           </div>
           <div class="col-md-4">
-            <select id="statistic" name="statistic" class="custom-select">
-              <option selected disabled>Toàn nước</option>
-              <option value="Hà Nội">Hà Nội</option>
-              <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-              <option value="Đà Nẵng">Đà Nẵng</option>
-              <option value="Hải Phòng">Hải Phòng</option>
-              <option value="Cần Thơ">Cần Thơ</option>
+            <select id="province_select" name="province_selects" class="custom-select">
+              <option selected value="0">Toàn quốc</option>
+              <% var options = []; %>
+              <% for(let i = 0; i < province.length; i++) { %>
+                <option value='<%= i+1 %>'> <%= province[i] %> </option>
+              <%} %>
             </select>
           </div>
           <div class="container-fluid">
@@ -151,7 +150,7 @@
                   <div class="card-footer">
                     <div class="stats">
                       <i class="material-icons text-danger">warning</i>
-                      <a href="#pablo">Cập nhật ngày : <%= date_statistic %></a>
+                      <a href="#pablo" id="date1">Cập nhật ngày : <%= date_statistic %></a>
                     </div>
                   </div>
                 </div>
@@ -167,7 +166,7 @@
                   </div>
                   <div class="card-footer">
                     <div class="stats">
-                      <i class="material-icons">date_range</i> <%= date_statistic %>
+                      <i class="material-icons" >date_range</i> <h6 id="date2" ><%= date_statistic %></h6>
                     </div>
                   </div>
                 </div>
@@ -179,11 +178,11 @@
                       <i class="material-icons">insert_chart</i>
                     </div>
                     <p class="card-category">Tuổi trung bình</p>
-                    <h3 class="card-title"><%= statistic["average_age"] %></h3>
+                    <h3 class="card-title" id="age"><%= statistic["average_age"] %></h3>
                   </div>
                   <div class="card-footer">
                     <div class="stats">
-                      <i class="material-icons">local_offer</i> <%= date_statistic %>
+                      <i class="material-icons" >update</i> <h6 id="date3" ><%= date_statistic %></h6>
                     </div>
                   </div>
                 </div>
@@ -195,13 +194,12 @@
                       <i class="material-icons">store_mall_directory</i>
                     </div>
                     <p class="card-category">Hộ nghèo</p>
-                    <h3 class="card-title"><%= statistic["poor_familys"] %> hộ - <%= statistic["percent_poor_family"] %>
-                      %
+                    <h3 class="card-title" id="poor"><%= statistic["poor_familys"] %> hộ - <%= statistic["percent_poor_family"] %> %
                     </h3>
                   </div>
                   <div class="card-footer">
                     <div class="stats">
-                      <i class="material-icons">update</i> <%= date_statistic %>
+                      <i class="material-icons" >update</i> <h6 id="date4" ><%= date_statistic %></h6>
                     </div>
                   </div>
                 </div>
@@ -226,7 +224,7 @@
                     </div>
                     <div class="card-footer">
                       <div class="stats">
-                        <i class="material-icons">access_time</i> <%= date_statistic %>
+                        <i class="material-icons" >update</i> <h6 id="date5" ><%= date_statistic %></h6>
                       </div>
                     </div>
                   </div>
@@ -266,7 +264,7 @@
                     </div>
                     <div class="card-footer">
                       <div class="stats">
-                        <i class="material-icons">access_time</i> <%= date_statistic %>
+                        <i class="material-icons" >update</i> <h6 id="date6" ><%= date_statistic %></h6>
                       </div>
                     </div>
                   </div>
@@ -284,7 +282,7 @@
                   </div>
                   <div class="card-footer">
                     <div class="stats">
-                      <i class="material-icons">access_time</i> <%= date_statistic %>
+                      <i class="material-icons" >update</i> <h6 id="date7" ><%= date_statistic %></h6>
                     </div>
                   </div>
                 </div>
@@ -381,6 +379,18 @@
       });
     </script>
 
+    <!-- loadding -->
+    <div id="circle">
+      <div class="loader">
+        <div class="loader">
+            <div class="loader">
+               <div class="loader">
+    
+               </div>
+            </div>
+        </div>
+      </div>
+    </div> 
     <!-- một số dòng html phục vụ cho việc truyền dữ liệu -->
     <div id="warning">
     </div>
@@ -397,7 +407,10 @@
 
     <!-- vẽ các biểu đồ , hàm này ở public/js/dashboard.js -->
     <script>
-      draw_chart();
+      var percent_age = JSON.parse($("#percent_age").text());
+      var percent_jobs = JSON.parse($("#percent_jobs").text());
+      var percent_religious = JSON.parse($("#percent_religious").text());
+      draw_chart(percent_age,percent_jobs,percent_religious);
     </script>
 
 
