@@ -65,7 +65,8 @@ router.get('/dashboard',isLoggedIn, async function (req, res, next) {
     percent_age : percent_age,
     percent_jobs : percent_jobs,
     percent_religious : percent_religious,
-    date_statistic : date_statistic
+    date_statistic : date_statistic,
+    title : Dashboards
    })
   });
 
@@ -77,6 +78,11 @@ router.post('/userProfile', isLoggedIn, profileController.update_profile);
 
 // GET search
 router.get('/searchID',isLoggedIn, searchID.searchID);
+
+// GET searchImg
+router.get('/searchImg', function(req, res, next){
+  res.render('admin/searchImg.ejs', {title:"Search Image"})
+})
 
 // POST delete search
 router.post('/searchID/:id', function(req, res){
