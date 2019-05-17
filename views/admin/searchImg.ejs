@@ -36,19 +36,47 @@
                         <div class="row">
                             <div class="col-md-6" style="min-height:600px">
                                 <div class="col-md-12" style="height:98%">
-                                    <div class="card card-chart" style="height:97%">
+                                    <div class="card card-chart" style="display: inline-block">
                                         <div class="card-body">
                                             <h4 class="card-title">Nhập ảnh cần tìm kiếm </h4>
-                                            <input class="form-control-file" type='file' id="anh_chan_dung" name="img_to_search" required />
-                                            <img id="anh1" src="./images/person.jpg" alt="your image" width="400px"
-                                                height="auto" style="max-height: 600px; margin: 10px;" />
+                                            <input class="form-control-file" type='file' id="anh_chan_dung" name="file"
+                                                required />
+                                            <% if (condition) { %>
+                                            <img src="data:image/jpeg;base64,<%= root_image %>" class="rounded"
+                                                id="anh1" alt="your image" width="400px" height="auto"
+                                                style="max-height: 600px; margin: 10px;">
+                                            <% } else { %>
+                                            <img id="anh1" src="./images/person.jpg" class="rounded" id="anh1"
+                                                alt="your image" width="400px" height="auto"
+                                                style="max-height: 600px; margin: 10px;" />
+                                            <% } %>
                                         </div>
                                         <div class="card-body text-center">
-                                            <input type="submit" id="img-button-submit" class="btn float-none" value="Upload">
+                                            <input type="submit" id="img-button-submit" class="btn float-none"
+                                                value="Upload">
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <% if (condition) {%>
+                            <div class="col-md-6" style="min-height:600px">
+                                <div class="row col-md-12" style="height:98%">
+                                    <div class="card card-chart" style="display: inline-block">
+                                        <% for(var i=0; i<name_of_nearest_faces.length; i++) {%>
+                                        <span class="col-md-6 float-left">
+                                            <div class="border bg-info text-white" style="margin: 5px">
+                                                <p class="text-left" style="margin-bottom:-5px"><%= i+1 %> : <%= name_of_nearest_faces[i] %></p>
+                                                <img src="data:image/jpeg;base64,<%= image_nearest_faces[i] %>"
+                                                    class="rounded" alt="your image" width="180px" height="180px">
+                                            </div>
+                                        </span>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+
                         </div>
                     </form>
                 </div>

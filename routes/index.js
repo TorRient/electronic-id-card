@@ -10,14 +10,15 @@ var searchImg = require('../controller/searchImg')
 var multer  = require('multer')
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '/tmp/my-uploads')
+    cb(null, 'public/uploads/')
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now())
+    cb(null, file.originalname); // modified here  or user file.mimetype
   }
 })
- 
 var upload = multer({ storage: storage })
+
+ 
 var IdentificationCard = require('../models/identification_card');
 var insertRecord = require('../controller/insertRecord');
 var profileController = require('../controller/profileController')
@@ -94,7 +95,7 @@ router.get('/searchID',isLoggedIn, searchID.searchID);
 
 // GET searchImg
 router.get('/searchImg', function(req, res, next){
-  res.render('admin/searchImg.ejs', {title:"Search Image"})
+  res.render('admin/searchImg.ejs', {title:"Search Image", condition:0})
 })
 
 router.post('/searchImg', upload.single('file'),searchImg.searchImg);
