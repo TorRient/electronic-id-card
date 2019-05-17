@@ -20,7 +20,8 @@ exports.searchID = function (req, res, next) {
                 xa_thuong_tru: existing.thuong_tru.split(" - ")[0],
                 tp_tam_tru: existing.tam_tru.split(" - ")[2],
                 huyen_tam_tru: existing.tam_tru.split(" - ")[1],
-                xa_tam_tru: existing.tam_tru.split(" - ")[0]
+                xa_tam_tru: existing.tam_tru.split(" - ")[0],
+                title : "Search ID"
             })
         }
     });
