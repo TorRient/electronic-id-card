@@ -7,8 +7,12 @@ var nghe_nghiep_cfg = require('../config/nghe_nghiep');
 var dan_toc = dan_toc_cfg;
 var ton_giao = ton_giao_cfg;
 var nghe_nghiep = nghe_nghiep_cfg;
+var fs = require('fs')
 
 exports.insertRecord = function (req, res) {
+    anh_chan_dung = fs.readFileSync(req.files.anh_chan_dung[0].path, { encoding: 'base64' });
+    anh_cmt_truoc = fs.readFileSync(req.files.anh_cmt_truoc[0].path, { encoding: 'base64' });
+    anh_cmt_sau = fs.readFileSync(req.files.anh_cmt_sau[0].path, { encoding: 'base64' });
     var insert = new IdentificationCard({
         so_cmt: req.body.so_cmt,
         ten: req.body.ten,
@@ -20,16 +24,15 @@ exports.insertRecord = function (req, res) {
         ton_giao: req.body.ton_giao,
         dau_vet_rieng_va_di_hinh: req.body.dau_vet_rieng_va_di_hinh,
         ngay_cap: req.body.ngay_cap,
-        anh_chan_dung: req.body.anh_chan_dung,
-        anh_cmt_truoc: req.body.anh_cmt_truoc,
-        anh_cmt_sau: req.body.anh_cmt_sau,
+        anh_chan_dung: anh_chan_dung,
+        anh_cmt_truoc: anh_cmt_truoc,
+        anh_cmt_sau: anh_cmt_sau,
         nghe_nghiep: req.body.nghe_nghiep
     });
 
     if (Object.keys(req.body.so_cmt).length === 0
         || Object.keys(req.body.ngay_cap).length === 0
         || Object.keys(req.body.ngay_sinh).length === 0
-        || Object.keys(req.body.anh_chan_dung).length === 0
         || Object.keys(req.body.tp_nguyen_quan) === undefined
         || Object.keys(req.body.huyen_nguyen_quan) === undefined
         || Object.keys(req.body.xa_nguyen_quan) === undefined
@@ -42,6 +45,7 @@ exports.insertRecord = function (req, res) {
         console.log('Object missing');
         req.flash('err', 'Not emty');
         return res.render('admin/insertRecord', {
+            title: "Insert Record",
             dan_toc: dan_toc,
             ton_giao: ton_giao,
             nghe_nghiep: nghe_nghiep,
@@ -53,6 +57,7 @@ exports.insertRecord = function (req, res) {
                 console.log("CMT tồn tại");
                 var conditional = 1;
                 return res.render('admin/insertRecord', {
+                    title: "Insert Record",
                     dan_toc: dan_toc,
                     ton_giao: ton_giao,
                     nghe_nghiep: nghe_nghiep,
@@ -72,6 +77,7 @@ exports.insertRecord = function (req, res) {
                     }
                 })
                 return res.render('admin/insertRecord', {
+                    title: "Insert Record",
                     dan_toc: dan_toc,
                     ton_giao: ton_giao,
                     nghe_nghiep: nghe_nghiep,
