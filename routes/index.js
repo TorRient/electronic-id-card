@@ -169,7 +169,9 @@ router.get('/insertRecord', function (req, res) {
 
 // GET map
 router.get('/map', function(req, res){
-  res.render('admin/map');
+  res.render('admin/map', {
+    title: "Bản đồ Việt Nam"
+  });
 });
 // route middleware để kiểm tra một user đã đăng nhập hay chưa?
 function isLoggedIn(req, res, next) {

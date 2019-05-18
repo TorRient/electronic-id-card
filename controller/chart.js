@@ -115,7 +115,7 @@ exports.statistics = async function(list_person,province){
 // hàm này không dùng vì nếu dùng thì lượng dân số có trong database ít quá
 exports.count_person_by_area = async function(req,res){
 	var total_population = await chart.count_person_by_area("All") ;
-	console.log('tổng dân số là : ' + total_population);
+	console.log('tổng dân số là : ' + total_population);    
 	res.send('tổng dân số  thái bình là : ' + String(total_population));
 	res.end();
 }
