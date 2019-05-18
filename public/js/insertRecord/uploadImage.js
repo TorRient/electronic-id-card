@@ -1,49 +1,49 @@
 function readURL1(input) {
 
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
 
-      reader.onload = function (e) {
-        $('#anh1').attr('src', e.target.result);
-      }
-
-      reader.readAsDataURL(input.files[0]);
+    reader.onload = function (e) {
+      $('#anh1').attr('src', e.target.result);
     }
-  };
 
-  $("#anh_chan_dung").change(function () {
-    readURL1(this);
-  });
+    reader.readAsDataURL(input.files[0]);
+  }
+};
 
-  function readURL2(input) {
+$("#anh_chan_dung").change(function () {
+  readURL1(this);
+});
 
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
+function readURL2(input) {
 
-      reader.onload = function (e) {
-        $('#anh2').attr('src', e.target.result);
-      }
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
 
-      reader.readAsDataURL(input.files[0]);
+    reader.onload = function (e) {
+      $('#anh2').attr('src', e.target.result);
     }
-  };
 
-  $("#anh_cmt_truoc").change(function () {
-    readURL2(this);
-  });
-  function readURL3(input) {
+    reader.readAsDataURL(input.files[0]);
+  }
+};
 
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
+$("#anh_cmt_truoc").change(function () {
+  readURL2(this);
+});
+function readURL3(input) {
 
-      reader.onload = function (e) {
-        $('#anh3').attr('src', e.target.result);
-      }
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
 
-      reader.readAsDataURL(input.files[0]);
+    reader.onload = function (e) {
+      $('#anh3').attr('src', e.target.result);
     }
-  };
 
-  $("#anh_cmt_sau").change(function () {
-    readURL3(this);
-  });
+    reader.readAsDataURL(input.files[0]);
+  }
+};
+
+$("#anh_cmt_sau").change(function () {
+  readURL3(this);
+});

@@ -1,4 +1,79 @@
 var identificationcards = require('../models/identification_card');
+var family = require('../models/family');
+
+// hàm này trả về danh sách tất cả dân sổ của 1 tỉnh , nếu tham số tỉnh bằng null thì nó sẽ lấy của cả nước
+exports.select_person_by_area = async function(province){
+    var list_person ;
+    if (province === "All") {
+        try {
+            list_person = await identificationcards.find();
+        } catch (error) {
+            console.log(error);
+        }        
+    } else {
+        try {
+            list_person = await identificationcards.find({thuong_tru : province});
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    return list_person ;
+}
+
+// hàm này đếm số dân của 1 tỉnh , nếu tham số tỉnh bằng null thì nó sẽ đếm dân số của cả nước
+exports.count_person_by_area = async function(province){
+    var counts ;
+	if (province === "All") {
+        try {
+            counts = await identificationcards.countDocuments() ;
+        } catch (error) {
+            console.log(error);
+        }
+    } else {
+        try {
+            counts = await identificationcards.countDocuments({thuong_tru : province});
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    return counts;
+};
+
+//hàm này đếm số hộ nghèo của cả nước
+exports.count_family = async function(ho_ngheo,tinh){
+    var count ;
+    // nếu hộ nghèo = false tức là sẽ lấy tổng tất cả các hộ
+    if (tinh === "All") {
+        if (ho_ngheo) {
+            try {
+                count = await family.countDocuments({ho_ngheo : ho_ngheo});
+            } catch (error) {
+                console.log(error);
+            }    
+        } else {
+            try {
+                count = await family.countDocuments();
+            } catch (error) {
+                console.log(error);
+            }     
+        }
+    } else {
+        if (ho_ngheo) {
+            try {
+                count = await family.countDocuments({ho_ngheo : ho_ngheo,tinh : tinh});
+            } catch (error) {
+                console.log(error);
+            }    
+        } else {
+            try {
+                count = await family.countDocuments({tinh : tinh});
+            } catch (error) {
+                console.log(error);
+            }     
+        }
+    }
+    return count ;
+}
 
 // biến json này lưu thông tin về số dân ở từng độ tuổi , trong mảng giái trị ở dưới thì phần tử đầu lưu nam , phần tử 2 lưu nữ
 var percent_age = {
@@ -23,7 +98,7 @@ var percent_age = {
 
 } ;
 // hàm này trả về một đối tượng json chứa tỷ lệ dân số theo độ tuổi
-exports.extract_percent_age = async function(list_person){
+exports.extract_percent_age = function(list_person){
     list_person.forEach(person => {
         let i = 1 ;
         if(person.gioi_tinh === "Nam"){
@@ -100,7 +175,7 @@ exports.extract_percent_age = async function(list_person){
     return {labels : labels ,series_woman : series_woman ,series_man : series_man} ;
 }
 // hàm tính tỷ lệ người trong độ tuổi lao động
-exports.percent_working_gender = async function(percent_age){
+exports.percent_working_gender = function(percent_age){
     series_woman = percent_age.series_woman ;
     var count_woman = 0 ;
     series_woman.forEach(x =>{
