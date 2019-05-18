@@ -5,7 +5,20 @@ var loginController = require('../controller/loginController')
 var passport = require('passport');
 var utils = require('utils');
 var chart = require('../controller/chart');
+var searchImg = require('../controller/searchImg')
 
+var multer  = require('multer')
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname); // modified here  or user file.mimetype
+  }
+})
+var upload = multer({ storage: storage })
+
+ 
 var IdentificationCard = require('../models/identification_card');
 var insertRecord = require('../controller/insertRecord');
 var profileController = require('../controller/profileController')
@@ -33,7 +46,8 @@ router.get('/', async function (req, res, next) {
     percent_age : percent_age,
     percent_jobs : percent_jobs,
     percent_religious : percent_religious,
-    date_statistic : date_statistic
+    date_statistic : date_statistic,
+    title : "Dashboards"
    });
 });
 
@@ -67,7 +81,8 @@ router.get('/dashboard',isLoggedIn, async function (req, res, next) {
     percent_jobs : percent_jobs,
     percent_religious : percent_religious,
     date_statistic : date_statistic ,
-    province : province
+    province : province ,
+    title : "Dashboards"
    })
   });
 
@@ -80,6 +95,13 @@ router.post('/userProfile', isLoggedIn, profileController.update_profile);
 
 // GET search
 router.get('/searchID',isLoggedIn, searchID.searchID);
+
+// GET searchImg
+router.get('/searchImg', function(req, res, next){
+  res.render('admin/searchImg.ejs', {title:"Search Image", condition:0})
+})
+
+router.post('/searchImg', upload.single('file'),searchImg.searchImg);
 
 // POST delete search
 router.post('/searchID/:id', function(req, res){
@@ -114,7 +136,8 @@ router.get('/editID/:id',isLoggedIn, function (req, res) {
         dan_toc: dan_toc,
         ton_giao: ton_giao,
         nghe_nghiep: nghe_nghiep,
-        conditional: 0
+        conditional: 0,
+        title : "Edit ID"
       });
     };
   });
@@ -131,7 +154,8 @@ router.get('/insertRecord',isLoggedIn, function (req, res) {
     dan_toc: dan_toc,
     ton_giao: ton_giao,
     nghe_nghiep: nghe_nghiep,
-    conditional: 0
+    conditional: 0,
+    title : "Insert Record"
   });``
 });
 // route middleware để kiểm tra một user đã đăng nhập hay chưa?
