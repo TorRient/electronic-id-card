@@ -6,10 +6,32 @@ exports.searchID = function (req, res, next) {
         if (err) {
             return console.log(err);
         } else if (!existing) {
-            return console.log("Không tìm thấy");
+            return res.render('admin/searchID',{
+                data: {
+                    ten: ' ',
+                    so_cmt: ' ',
+                    ton_giao: ' ',
+                    nghe_nghiep: ' ',
+                    dau_vet_rieng_va_di_hinh: ' '
+                },
+                conditional: 1,
+                ngay_sinh: ' ',
+                ngay_cap: ' ',
+                tp_nguyen_quan: ' ',
+                huyen_nguyen_quan: ' ',
+                xa_nguyen_quan: ' ',
+                tp_thuong_tru: ' ',
+                huyen_thuong_tru: ' ',
+                xa_thuong_tru: ' ',
+                tp_tam_tru: ' ',
+                huyen_tam_tru: ' ',
+                xa_tam_tru: ' ',
+                title : "Search ID"
+            })
         } else {
             return res.render('admin/searchID', {
                 data: existing,
+                conditional: 0,
                 ngay_sinh: moment(existing.ngay_sinh).format('MM / DD / YYYY'),
                 ngay_cap: moment(existing.ngay_cap).format('MM / DD / YYYY'),
                 tp_nguyen_quan: existing.nguyen_quan.split(" - ")[2],

@@ -145,11 +145,19 @@ router.get('/editID/:id',isLoggedIn, function (req, res) {
 // POST edit ID
 router.post('/editID/:id', editID.editID);
 
-// POST insert record
-router.post('/insertRecord',isLoggedIn, insertRecord.insertRecord);
+// POST insert record 
+router.post('/insertRecord',upload.fields([
+  {
+    name: "anh_chan_dung", maxCount:1
+  },{
+    name: "anh_cmt_truoc", maxCount:1
+  },{
+    name: "anh_cmt_sau", maxCount:1
+  }
+]), insertRecord.insertRecord);
 
 // GET insert
-router.get('/insertRecord',isLoggedIn, function (req, res) {
+router.get('/insertRecord', function (req, res) {
   res.render('admin/insertRecord', {
     dan_toc: dan_toc,
     ton_giao: ton_giao,
@@ -157,6 +165,11 @@ router.get('/insertRecord',isLoggedIn, function (req, res) {
     conditional: 0,
     title : "Insert Record"
   });``
+});
+
+// GET map
+router.get('/map', function(req, res){
+  res.render('admin/map');
 });
 // route middleware để kiểm tra một user đã đăng nhập hay chưa?
 function isLoggedIn(req, res, next) {

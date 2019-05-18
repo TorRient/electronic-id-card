@@ -37,6 +37,10 @@
                             <div class="col-md-6" style="min-height:600px">
                                 <div class="col-md-12" style="height:98%">
                                     <div class="card card-chart" style="display: inline-block">
+                                        <div class="card-header card-header-primary">
+                                            <h4 class="card-title">Search Image</h4>
+                                            <p class="card-category">Please, upload image</p>
+                                        </div>
                                         <div class="card-body">
                                             <h4 class="card-title">Nhập ảnh cần tìm kiếm </h4>
                                             <input class="form-control-file" type='file' id="anh_chan_dung" name="file"
@@ -66,7 +70,8 @@
                                         <% for(var i=0; i<name_of_nearest_faces.length; i++) {%>
                                         <span class="col-md-6 float-left">
                                             <div class="border bg-info text-white" style="margin: 5px">
-                                                <p class="text-left" style="margin-bottom:-5px"><%= i+1 %> : <%= name_of_nearest_faces[i] %></p>
+                                                <p class="text-left" style="margin-bottom:-5px"><%= i+1 %> :
+                                                    <%= name_of_nearest_faces[i] %></p>
                                                 <img src="data:image/jpeg;base64,<%= image_nearest_faces[i] %>"
                                                     class="rounded" alt="your image" width="180px" height="180px">
                                             </div>
@@ -76,7 +81,6 @@
                                 </div>
                             </div>
                             <% } %>
-
                         </div>
                     </form>
                 </div>
