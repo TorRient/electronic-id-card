@@ -8,6 +8,7 @@ var dan_toc = dan_toc_cfg;
 var ton_giao = ton_giao_cfg;
 var nghe_nghiep = nghe_nghiep_cfg;
 var fs = require('fs')
+var axios = require('axios')
 
 exports.insertRecord = function (req, res) {
     anh_chan_dung = fs.readFileSync(req.files.anh_chan_dung[0].path, { encoding: 'base64' });
@@ -52,7 +53,7 @@ exports.insertRecord = function (req, res) {
             conditional: 1
         });
     } else {
-        IdentificationCard.find({ so_cmt: req.body.so_cmt }, function (err, existing) {
+        IdentificationCard.find({ so_cmt: req.body.so_cmt }, async function (err, existing) {
             if (existing.length) {
                 console.log("CMT tồn tại");
                 var conditional = 1;
@@ -65,17 +66,31 @@ exports.insertRecord = function (req, res) {
                 });
             } else {
                 console.log("CMT không tồn tại");
-                insert.save(function (err) {
-                    if (err) {
+                await axios.post('http://0.0.0.0:5000/insertRecord', {
+                    ID: req.body.so_cmt,
+                    data: anh_chan_dung
+                })
+                    .then(function (response) {
+                        insert.save(function (err) {
+                            if (err) {
+                                res.json({
+                                    result: 'failed',
+                                    data: {},
+                                    message: 'khong the insert'
+                                })
+                            } else {
+                                console.log("Thanh cong");
+                            }
+                        })
+                    })
+                    .catch(function (error) {
                         res.json({
                             result: 'failed',
                             data: {},
                             message: 'khong the insert'
                         })
-                    } else {
-                        console.log("Thêm thành công");
-                    }
-                })
+                    });
+
                 return res.render('admin/insertRecord', {
                     title: "Insert Record",
                     dan_toc: dan_toc,
