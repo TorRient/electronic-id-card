@@ -23,11 +23,11 @@
 
 <body class="">
   <div class="wrapper ">
-    
+
     <% include slideBar %>
 
     <div class="main-panel">
-      
+
       <% include navBar %>
 
       <div class="content">
@@ -36,6 +36,11 @@
             <div class="row">
               <div class="col-md-10 offset-1">
                 <div class="card">
+                  <%if (conditional == 1) { %>
+                  <div class="alert alert-danger" role="alert">
+                    Không tìm thấy!
+                  </div>
+                  <% } %>
                   <div class="card-header card-header-primary">
                     <h4 class="card-title">Search ID</h4>
                     <p class="card-category">Info Record</p>
@@ -78,19 +83,19 @@
                       <div class="row">
                         <div class="col-md-4">
                           <div>Dân tộc</div>
-                          <select id="dan_toc" name="dan_toc" class="custom-select">
+                          <select id="dan_toc" name="dan_toc" class="custom-select" disabled>
                             <option value="<%= data.dan_toc %>" selected><%= data.dan_toc %></option>
                           </select>
                         </div>
                         <div class="col-md-4">
                           <div>Tôn giáo</div>
-                          <select id="ton_giao" name="ton_giao" class="custom-select">
+                          <select id="ton_giao" name="ton_giao" class="custom-select" disabled>
                             <option value="<%= data.ton_giao %>"><%= data.ton_giao %></option>
                           </select>
                         </div>
                         <div class="col-md-4">
                           <div>Nghề nghiệp</div>
-                          <select id="nghe_nghiep" name="nghe_nghiep" class="custom-select">
+                          <select id="nghe_nghiep" name="nghe_nghiep" class="custom-select" disabled>
                             <option value="<%= data.nghe_nghiep %>"><%= data.nghe_nghiep %></option>
                           </select>
                         </div>
@@ -110,17 +115,17 @@
                       <p>Nguyên quán</p>
                       <div class="row">
                         <div class="col-md-4">
-                          <select id="tp_nguyen_quan" name="tp_nguyen_quan" class="custom-select">
+                          <select id="tp_nguyen_quan" name="tp_nguyen_quan" class="custom-select" disabled>
                             <option value="<%= tp_nguyen_quan %>" selected><%= tp_nguyen_quan %></option>
                           </select>
                         </div>
                         <div class="col-md-4">
-                          <select id="huyen_nguyen_quan" name="huyen_nguyen_quan" class="custom-select">
+                          <select id="huyen_nguyen_quan" name="huyen_nguyen_quan" class="custom-select" disabled>
                             <option value="<%= huyen_nguyen_quan %>" selected><%= huyen_nguyen_quan %></option>
                           </select>
                         </div>
                         <div class="col-md-4">
-                          <select id="xa_nguyen_quan" name="xa_nguyen_quan" class="custom-select">
+                          <select id="xa_nguyen_quan" name="xa_nguyen_quan" class="custom-select" disabled>
                             <option value="<%= xa_nguyen_quan %>" selected><%= xa_nguyen_quan %></option>
                           </select>
                         </div>
@@ -129,17 +134,17 @@
                       <p>Thường trú</p>
                       <div class="row">
                         <div class="col-md-4">
-                          <select id="tp_thuong_tru" name="tp_thuong_tru" class="custom-select">
+                          <select id="tp_thuong_tru" name="tp_thuong_tru" class="custom-select" disabled>
                             <option value="<%= tp_thuong_tru %>" selected><%= tp_thuong_tru %></option>
                           </select>
                         </div>
                         <div class="col-md-4">
-                          <select id="huyen_thuong_tru" name="huyen_thuong_tru" class="custom-select">
+                          <select id="huyen_thuong_tru" name="huyen_thuong_tru" class="custom-select" disabled>
                             <option value="<%= huyen_thuong_tru %>" selected><%= huyen_thuong_tru %></option>
                           </select>
                         </div>
                         <div class="col-md-4">
-                          <select id="xa_thuong_tru" name="xa_thuong_tru" class="custom-select">
+                          <select id="xa_thuong_tru" name="xa_thuong_tru" class="custom-select" disabled>
                             <option value="<%= xa_thuong_tru %>" selected><%= xa_thuong_tru %></option>
                           </select>
                         </div>
@@ -148,28 +153,30 @@
                       <p>Tạm trú</p>
                       <div class="row">
                         <div class="col-md-4">
-                          <select id="tp_tam_tru" name="tp_tam_tru" class="custom-select">
+                          <select id="tp_tam_tru" name="tp_tam_tru" class="custom-select" disabled>
                             <option value="<%= tp_tam_tru %>" selected><%= tp_tam_tru %></option>
                           </select>
                         </div>
                         <div class="col-md-4">
-                          <select id="huyen_tam_tru" name="huyen_tam_tru" class="custom-select">
+                          <select id="huyen_tam_tru" name="huyen_tam_tru" class="custom-select" disabled>
                             <option value="<%= huyen_tam_tru %>" selected><%= huyen_tam_tru %></option>
                           </select>
                         </div>
                         <div class="col-md-4">
-                          <select id="xa_tam_tru" name="xa_tam_tru" class="custom-select">
+                          <select id="xa_tam_tru" name="xa_tam_tru" class="custom-select" disabled>
                             <option value="<%= xa_tam_tru %>" selected><%= xa_tam_tru %></option>
                           </select>
                         </div>
                       </div>
                       <br>
                       <br>
+                      <%if (conditional == 0) { %>
                       <button type="submit" class="btn btn-danger pull-right"
                         onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Delete</a>
                         <a href="/editID/<%= data.so_cmt %>">
                           <button type="button" class="btn btn-info pull-right">Edit</button>
                         </a>
+                        <% } %>
                     </form>
                   </div>
                 </div>
