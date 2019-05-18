@@ -18,6 +18,9 @@ var IdentificationCard  = new Schema(
 		anh_chan_dung: {type: String, require: true},
 		anh_cmt_truoc: {type: String, default: ""},
 		anh_cmt_sau: {type: String, default: ""},
+		// anh_chan_dung_AI: {type: String, require: true},
+		// anh_cmt_truoc_AI: {type: String, default: ""},
+		// anh_cmt_sau_AI: {type: String, default: ""},
 		nghe_nghiep: {type: String, require: true},
 		gioi_tinh : {type: String, require: true}
 	}

@@ -131,6 +131,11 @@ router.get('/insertRecord',isLoggedIn, function (req, res) {
     conditional: 0
   });``
 });
+
+// GET map
+router.get('/map', function(req, res){
+  res.render('admin/map');
+});
 // route middleware để kiểm tra một user đã đăng nhập hay chưa?
 function isLoggedIn(req, res, next) {
   // Nếu một user đã xác thực, cho đi tiếp
