@@ -35,7 +35,7 @@ var nghe_nghiep = nghe_nghiep_cfg
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
-  var result = await chart.load_result();
+  var result = await chart.load_result("0");
   var statistics = JSON.parse(result.statistic_result) ;
   var percent_age = result.percent_age ;
   var percent_jobs = result.percent_jobs ;
@@ -68,7 +68,8 @@ router.get('/logout', loginController.logout);
 router.get('/userProfile', isLoggedIn, profileController.get_profile);
 
 router.get('/dashboard',isLoggedIn, async function (req, res, next) {
-  var result = await chart.load_result();
+  var province = await chart.load_province() ;
+  var result = await chart.load_result("0");
   var statistics = JSON.parse(result.statistic_result) ;
   var percent_age = result.percent_age ;
   var percent_jobs = result.percent_jobs ;
@@ -79,13 +80,15 @@ router.get('/dashboard',isLoggedIn, async function (req, res, next) {
     percent_age : percent_age,
     percent_jobs : percent_jobs,
     percent_religious : percent_religious,
-    date_statistic : date_statistic,
+    date_statistic : date_statistic ,
+    province : province ,
     title : "Dashboards"
    })
   });
 
 
-router.use('/runStatistic',chart.run_statistic);
+router.post('/runStatistic',isLoggedIn,chart.run_statistic);
+router.post('/province_ajax',isLoggedIn,chart.load_ajax);
 
 router.post('/userProfile', isLoggedIn, profileController.update_profile);
 
@@ -142,11 +145,19 @@ router.get('/editID/:id',isLoggedIn, function (req, res) {
 // POST edit ID
 router.post('/editID/:id', editID.editID);
 
-// POST insert record
-router.post('/insertRecord',isLoggedIn, insertRecord.insertRecord);
+// POST insert record 
+router.post('/insertRecord',upload.fields([
+  {
+    name: "anh_chan_dung", maxCount:1
+  },{
+    name: "anh_cmt_truoc", maxCount:1
+  },{
+    name: "anh_cmt_sau", maxCount:1
+  }
+]), insertRecord.insertRecord);
 
 // GET insert
-router.get('/insertRecord',isLoggedIn, function (req, res) {
+router.get('/insertRecord', function (req, res) {
   res.render('admin/insertRecord', {
     dan_toc: dan_toc,
     ton_giao: ton_giao,
@@ -154,6 +165,11 @@ router.get('/insertRecord',isLoggedIn, function (req, res) {
     conditional: 0,
     title : "Insert Record"
   });``
+});
+
+// GET map
+router.get('/map', function(req, res){
+  res.render('admin/map');
 });
 // route middleware để kiểm tra một user đã đăng nhập hay chưa?
 function isLoggedIn(req, res, next) {
