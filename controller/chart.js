@@ -114,12 +114,29 @@ exports.statistics = async function(list_person,province){
 // tính tổng dân số 
 // hàm này không dùng vì nếu dùng thì lượng dân số có trong database ít quá
 exports.count_person_by_area = async function(req,res){
-	var total_population = await chart.count_person_by_area("All") ;
-	console.log('tổng dân số là : ' + total_population);    
-	res.send('tổng dân số  thái bình là : ' + String(total_population));
-	res.end();
-}
+    var provinces = await exports.load_province() ;
+    // All là đại diện cho cả nước
+    provinces.push("All") ;
+    var count ;
+    var population_of_province = {} ;
+    for (let index = 0; index < provinces.length ; index++) {
+        count = await chart.count_person_by_area(provinces[index]) ;
+        population_of_province[provinces[index]] = count ;
+    } ;
+    try {
+        fs.writeFileSync('./public/population_of_province.json',JSON.stringify(population_of_province),'utf8');
+    } catch (error) {
+        console.log(error);
+    }
 
+    res.send(population_of_province) ;
+    return population_of_province ;
+}
+ exports.load_population_of_province = async function(req,res){
+    var texts = await fs.readFileSync('./public/population_of_province.json','utf8') ;
+    res.send(JSON.parse(texts) )
+    return JSON.parse(texts) ;
+ }
 // tính tuổi trung bình
 exports.average_age = function(list_person){
 	var total_population = list_person.length ;

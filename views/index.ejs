@@ -250,7 +250,10 @@
 
   <!-- vẽ các biểu đồ , hàm này ở public/js/dashboard.js -->
   <script>
-    draw_chart();
+    var percent_age = JSON.parse($("#percent_age").text());
+    var percent_jobs = JSON.parse($("#percent_jobs").text());
+    var percent_religious = JSON.parse($("#percent_religious").text());
+    draw_chart(percent_age,percent_jobs,percent_religious);
   </script>
 </body>
 
