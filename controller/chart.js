@@ -44,7 +44,7 @@ exports.run_statistic = async function(req,res){
 
     try {
         fs.writeFileSync('./models/result_statistic.json',JSON.stringify(result),'utf8');
-        fs.writeFileSync('./models/population_of_province.json',JSON.stringify(population_of_province),'utf8');
+        fs.writeFileSync('./public/population_of_province.json',JSON.stringify(population_of_province),'utf8');
     } catch (error) {
         console.log(error);
     }
