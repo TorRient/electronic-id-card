@@ -126,7 +126,7 @@ exports.count_person_by_area = async function(req,res){
         population_of_province[provinces[index]] = count ;
     } ;
     try {
-        fs.writeFileSync('./models/population_of_province.json',JSON.stringify(population_of_province),'utf8');
+        fs.writeFileSync('./public/population_of_province.json',JSON.stringify(population_of_province),'utf8');
     } catch (error) {
         console.log(error);
     }
@@ -135,7 +135,7 @@ exports.count_person_by_area = async function(req,res){
     return population_of_province ;
 }
  exports.load_population_of_province = async function(req,res){
-    var texts = await fs.readFileSync('./models/population_of_province.json','utf8') ;
+    var texts = await fs.readFileSync('./public/population_of_province.json','utf8') ;
     res.send(JSON.parse(texts) )
     return JSON.parse(texts) ;
  }

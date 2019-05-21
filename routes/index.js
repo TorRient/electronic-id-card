@@ -90,21 +90,21 @@ router.get('/dashboard',isLoggedIn, async function (req, res, next) {
 router.post('/runStatistic',isLoggedIn,chart.run_statistic);
 router.post('/province_ajax',isLoggedIn,chart.load_ajax);
 
-router.post('/userProfile', isLoggedIn, profileController.update_profile);
+router.post('/userProfile',isLoggedIn, profileController.update_profile);
 
 
 // GET search
 router.get('/searchID',isLoggedIn, searchID.searchID);
 
 // GET searchImg
-router.get('/searchImg', function(req, res, next){
+router.get('/searchImg',isLoggedIn, function(req, res, next){
   res.render('admin/searchImg.ejs', {title:"Search Image", condition:0})
 })
 
 router.post('/searchImg', upload.single('file'),searchImg.searchImg);
 
 // POST delete search
-router.post('/searchID/:id', function(req, res){
+router.post('/searchID/:id',isLoggedIn, function(req, res){
  IdentificationCard.remove({so_cmt: req.params.id}, function(err){
    if(err){
      console.log(err);
@@ -143,7 +143,7 @@ router.get('/editID/:id',isLoggedIn, function (req, res) {
   });
 })
 // POST edit ID
-router.post('/editID/:id', editID.editID);
+router.post('/editID/:id',isLoggedIn, editID.editID);
 
 // POST insert record 
 router.post('/insertRecord',upload.fields([
@@ -157,7 +157,7 @@ router.post('/insertRecord',upload.fields([
 ]), insertRecord.insertRecord);
 
 // GET insert
-router.get('/insertRecord', function (req, res) {
+router.get('/insertRecord',isLoggedIn, function (req, res) {
   res.render('admin/insertRecord', {
     dan_toc: dan_toc,
     ton_giao: ton_giao,
@@ -168,8 +168,10 @@ router.get('/insertRecord', function (req, res) {
 });
 
 // GET map
-router.get('/map', function(req, res){
-  res.render('admin/map');
+router.get('/map',isLoggedIn, function(req, res){
+  res.render('admin/map', {
+    title: "Bản đồ Việt Nam"
+  });
 });
 // route middleware để kiểm tra một user đã đăng nhập hay chưa?
 function isLoggedIn(req, res, next) {
