@@ -1,11 +1,11 @@
 $(document).ready(function() {
   $('#province_select').change(function(){
       pv = $('#province_select').val() ;
-      document.getElementById("warning").style.display = 'block' ;
+      document.getElementById("warning2").style.display = 'block' ;
       document.getElementById("circle").style.display = 'block' ;
       //alert(pv) ;
       setTimeout(function(){
-        document.getElementById("warning").style.display = 'none' ;
+        document.getElementById("warning2").style.display = 'none' ;
         document.getElementById("circle").style.display = 'none' ;
       }, 500);
       // Ajax
