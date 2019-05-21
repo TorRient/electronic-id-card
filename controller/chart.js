@@ -24,7 +24,7 @@ exports.run_statistic = async function(req,res){
     var mm = date.getMonth() + 1 ;
     var dd = date.getDate() ;
     var date_statistic = String(dd) + "-" + String(mm) + "-" + String(yyyy) ; 
-
+    var population_of_province = {} ;
     for (let index = 0; index < number_p; index++) {
         list_person = await chart.select_person_by_area(provinces[index]);
         statistic_result = await exports.statistics(list_person,provinces[index]) ;
@@ -38,11 +38,13 @@ exports.run_statistic = async function(req,res){
             "percent_religious" : percent_religious ,
             "date_statistic" : date_statistic
         }) ;
-        result[String((index+1)%number_p)] = text ;       
+        result[String((index+1)%number_p)] = text ;
+        population_of_province[provinces[index]] = list_person.length ;       
     }
 
     try {
         fs.writeFileSync('./models/result_statistic.json',JSON.stringify(result),'utf8');
+        fs.writeFileSync('./public/population_of_province.json',JSON.stringify(population_of_province),'utf8');
     } catch (error) {
         console.log(error);
     }
@@ -124,7 +126,7 @@ exports.count_person_by_area = async function(req,res){
         population_of_province[provinces[index]] = count ;
     } ;
     try {
-        fs.writeFileSync('./models/population_of_province.json',JSON.stringify(population_of_province),'utf8');
+        fs.writeFileSync('./public/population_of_province.json',JSON.stringify(population_of_province),'utf8');
     } catch (error) {
         console.log(error);
     }
@@ -133,7 +135,7 @@ exports.count_person_by_area = async function(req,res){
     return population_of_province ;
 }
  exports.load_population_of_province = async function(req,res){
-    var texts = await fs.readFileSync('./models/population_of_province.json','utf8') ;
+    var texts = await fs.readFileSync('./public/population_of_province.json','utf8') ;
     res.send(JSON.parse(texts) )
     return JSON.parse(texts) ;
  }

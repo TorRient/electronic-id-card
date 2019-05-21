@@ -25,11 +25,11 @@
 
 <body class="">
   <div class="wrapper ">
-    
-    <% include slideBar %> 
+
+    <% include slideBar %>
 
     <div class="main-panel">
-      
+
       <% include navBar %>
 
       <div class="content">
@@ -42,7 +42,7 @@
               <option selected value="0">Toàn quốc</option>
               <% var options = []; %>
               <% for(let i = 0; i < province.length; i++) { %>
-                <option value='<%= i+1 %>'> <%= province[i] %> </option>
+              <option value='<%= i+1 %>'> <%= province[i] %> </option>
               <%} %>
             </select>
           </div>
@@ -76,7 +76,8 @@
                   </div>
                   <div class="card-footer">
                     <div class="stats">
-                      <i class="material-icons" >date_range</i> <h6 id="date2" ><%= date_statistic %></h6>
+                      <i class="material-icons">date_range</i>
+                      <h6 id="date2"><%= date_statistic %></h6>
                     </div>
                   </div>
                 </div>
@@ -92,7 +93,8 @@
                   </div>
                   <div class="card-footer">
                     <div class="stats">
-                      <i class="material-icons" >update</i> <h6 id="date3" ><%= date_statistic %></h6>
+                      <i class="material-icons">update</i>
+                      <h6 id="date3"><%= date_statistic %></h6>
                     </div>
                   </div>
                 </div>
@@ -104,12 +106,14 @@
                       <i class="material-icons">store_mall_directory</i>
                     </div>
                     <p class="card-category">Hộ nghèo</p>
-                    <h3 class="card-title" id="poor"><%= statistic["poor_familys"] %> hộ - <%= statistic["percent_poor_family"] %> %
+                    <h3 class="card-title" id="poor"><%= statistic["poor_familys"] %> hộ -
+                      <%= statistic["percent_poor_family"] %> %
                     </h3>
                   </div>
                   <div class="card-footer">
                     <div class="stats">
-                      <i class="material-icons" >update</i> <h6 id="date4" ><%= date_statistic %></h6>
+                      <i class="material-icons">update</i>
+                      <h6 id="date4"><%= date_statistic %></h6>
                     </div>
                   </div>
                 </div>
@@ -134,7 +138,8 @@
                     </div>
                     <div class="card-footer">
                       <div class="stats">
-                        <i class="material-icons" >update</i> <h6 id="date5" ><%= date_statistic %></h6>
+                        <i class="material-icons">update</i>
+                        <h6 id="date5"><%= date_statistic %></h6>
                       </div>
                     </div>
                   </div>
@@ -174,7 +179,8 @@
                     </div>
                     <div class="card-footer">
                       <div class="stats">
-                        <i class="material-icons" >update</i> <h6 id="date6" ><%= date_statistic %></h6>
+                        <i class="material-icons">update</i>
+                        <h6 id="date6"><%= date_statistic %></h6>
                       </div>
                     </div>
                   </div>
@@ -192,7 +198,8 @@
                   </div>
                   <div class="card-footer">
                     <div class="stats">
-                      <i class="material-icons" >update</i> <h6 id="date7" ><%= date_statistic %></h6>
+                      <i class="material-icons">update</i>
+                      <h6 id="date7"><%= date_statistic %></h6>
                     </div>
                   </div>
                 </div>
@@ -293,36 +300,49 @@
     <div id="circle">
       <div class="loader">
         <div class="loader">
+          <div class="loader">
             <div class="loader">
-               <div class="loader">
-    
-               </div>
+
             </div>
+          </div>
         </div>
       </div>
-    </div> 
-    <!-- một số dòng html phục vụ cho việc truyền dữ liệu -->
-    <div id="warning">
     </div>
-    <div id="box_warning">
-      <h4 style="padding: 20px; text-align: center;">Việc chạy thống kê có thể mấy 5-10 phút , bạn có muốn tiếp tục !
-      </h4>
-      <div id="ok" onclick="ok()">Tiếp tục</div>
-      <div id="cance" onclick="cance()">Trở lại</div>
-    </div>
-    <p id="percent_age" style="visibility: hidden"> <%=percent_age%></p>
-    <p id="percent_jobs" style="visibility: hidden"> <%=percent_jobs%></p>
-    <p id="percent_religious" style="visibility: hidden"> <%=percent_religious%></p>
     <!-- một số dòng html phục vụ cho việc truyền dữ liệu -->
-
+    <div id="show" style="display: none">
+      <div id="warning">
+      </div>
+      <div id="box_warning">
+        <h4 style="padding: 20px; text-align: center;">Việc chạy thống kê có thể mấy 5-10 phút , bạn có muốn tiếp tục !
+        </h4>
+        <div id="ok" onclick="ok()">Tiếp tục</div>
+        <div id="cance" onclick="cance()">Trở lại</div>
+      </div>
+      <p id="percent_age" style="visibility: hidden"> <%=percent_age%></p>
+      <p id="percent_jobs" style="visibility: hidden"> <%=percent_jobs%></p>
+      <p id="percent_religious" style="visibility: hidden"> <%=percent_religious%></p>
+    </div>
+    <!-- một số dòng html phục vụ cho việc truyền dữ liệu -->
+    <script>
+      $(document).ready(function () {
+        $('#box-run-statistic').click(function () {
+          $('#show').css("display", "block")
+        });
+        $('#cance').click(function(){
+          $('#show').css("display", "none")
+        })
+        $('#ok').click(function(){
+          $('#show').css("display", "none")
+        })
+      })
+    </script>
     <!-- vẽ các biểu đồ , hàm này ở public/js/dashboard.js -->
     <script>
       var percent_age = JSON.parse($("#percent_age").text());
       var percent_jobs = JSON.parse($("#percent_jobs").text());
       var percent_religious = JSON.parse($("#percent_religious").text());
-      draw_chart(percent_age,percent_jobs,percent_religious);
+      draw_chart(percent_age, percent_jobs, percent_religious);
     </script>
-
 
 </body>
 

@@ -8,16 +8,17 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Heroic Features - Start Bootstrap Template</title>
-	
-  <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+  <title>Home</title>
+
+  <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="css/heroic-features.css" rel="stylesheet">
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
@@ -31,9 +32,10 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#"></a>
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-      <img src = "images/codang.png" width="50px" height="50px">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+      <img src="images/codang.png" width="50px" height="50px">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -63,142 +65,131 @@
 
     <!-- Page Features -->
     <div class="content" style="padding: 30px 15px;">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">content_copy</i>
-                  </div>
-                  <p class="card-category">Tổng dân số</p>
-                  <h3 class="card-title">91,4 triệu người</h3>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-header card-header-warning card-header-icon">
+                <div class="card-icon">
+                  <i class="material-icons">content_copy</i>
                 </div>
-                <div class="card-footer">	
-                  <div class="stats">
-                    <i class="material-icons text-danger">warning</i>
-                    <a href="#pablo">Cập nhật ngày : <%= date_statistic %></a>
-                  </div>
-                </div>
+                <p class="card-category">Tổng dân số</p>
+                <h3 class="card-title">91,4 triệu người</h3>
               </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-success card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">store</i>
-                  </div>
-                  <p class="card-category">Diện tích</p>
-                  <h3 class="card-title">34,245 ha</h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">date_range</i><%= date_statistic %>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-danger card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">info_outline</i>
-                  </div>
-                  <p class="card-category">Tuổi trung bình</p>
-                  <h3 class="card-title"><%= statistic["average_age"] %></h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">local_offer</i> <%= date_statistic %>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-info card-header-icon">
-                  <div class="card-icon">
-                    <i class="fa fa-twitter"></i>
-                  </div>
-                  <p class="card-category">Hộ nghèo</p>
-                  <h3 class="card-title"><%= statistic["poor_familys"] %> hộ - <%= statistic["percent_poor_family"] %> %</h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">update</i> <%= date_statistic %>
-                  </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons text-danger">warning</i>
+                  <a href="#pablo">Cập nhật ngày : <%= date_statistic %></a>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row" style="min-height:600px">
-            <div class= "col-md-6" style="min-height:600px">
-              <div class="col-md-12" style="height:98%">
-                <div class="card card-chart" style="height:97%">
-                  <div class="card-header card-header-success" style="height:100%">
-                    <div class="ct-chart" style="height:100%"  id="table_age"></div>
-                  </div>
-                  <div class="card-body">
-                    <h4 class="card-title">Bảng thống kê tuổi
-                      <div class = "anotation">
-                        <div class="anotation_term" style="background: #e64033"> </div> <h6 style="float:left;">&nbsp; Nam &nbsp;</h6>
-                        <div class="anotation_term" style="background: #d8eede"> </div> <h6 style="float:left;">&nbsp; Nữ  &nbsp;</h6>
-                      </div>
-                    </h4>
-                  </div>
-                  <div class="card-footer">
-                    <div class="stats">
-                      <i class="material-icons">access_time</i> <%= date_statistic %>
-                    </div>
-                  </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-header card-header-success card-header-icon">
+                <div class="card-icon">
+                  <i class="material-icons">store</i>
                 </div>
+                <p class="card-category">Diện tích</p>
+                <h3 class="card-title">34,245 ha</h3>
               </div>
-            </div>
-            <div  class = "col-md-6">
-                <div class="col-md-12" >
-                    <div class="card" style="min-height:230px">
-                      <div class="card-header card-header-tabs card-header-primary">
-                      </div>
-                      <div class="card-body">
-                        <h4 id="percent_working_age" ></h4>
-                        <h4 id="percent_out_of_work" ></h4>
-                        <h4 id="percent_man" ></h4>
-                        <h4 id="percent_woman" ></h4>
-                      </div>
-                    </div>
-                  </div>
-              <div class="col-md-12" style="height:425px">
-                <div class="card card-chart" style="height:425px">
-                  <div class="card-header card-header-danger" style="height:75%;padding: 0px;background: white;">
-                    <div class="ct-chart" style="height:100%" id="table_religious"></div>
-                  </div>
-                  <div class="card-body">
-                    <h4 class="card-title">Bảng thống kê tôn giáo
-                        <div class = "anotation">
-                            <div class="anotation_term" style="background: #5dbcd5;"> </div> <h6 style="float:left;">&nbsp; Không &nbsp;</h6>
-                            <div class="anotation_term" style="background:#e64033;"> </div> <h6 style="float:left;">&nbsp; Phật giáo  &nbsp;</h6>
-                            <div class="anotation_term" style="background: #ec9620;"> </div> <h6 style="float:left;">&nbsp; Thiên chúa giáo &nbsp;</h6>
-                            <div class="anotation_term"> </div> <h6 style="float:left;">&nbsp; Hồi giáo  &nbsp;</h6>
-                        </div>
-                    </h4>
-                  </div>
-                  <div class="card-footer">
-                    <div class="stats">
-                      <i class="material-icons">access_time</i> <%= date_statistic %>
-                    </div>
-                  </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons">date_range</i><%= date_statistic %>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12" style="height:425px">
-              <div class="card card-chart" style="height:425px">
-                <div class="card-header card-header-warning ct-chart" style="height: 80%;padding: 0px;" >
-                  <div class="ct-chart" style="height:98%;" id="table_jobs"></div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-header card-header-danger card-header-icon">
+                <div class="card-icon">
+                  <i class="material-icons">info_outline</i>
+                </div>
+                <p class="card-category">Tuổi trung bình</p>
+                <h3 class="card-title"><%= statistic["average_age"] %></h3>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons">local_offer</i> <%= date_statistic %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-header card-header-info card-header-icon">
+                <div class="card-icon">
+                  <i class="fa fa-twitter"></i>
+                </div>
+                <p class="card-category">Hộ nghèo</p>
+                <h3 class="card-title"><%= statistic["poor_familys"] %> hộ - <%= statistic["percent_poor_family"] %> %
+                </h3>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons">update</i> <%= date_statistic %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="min-height:600px">
+          <div class="col-md-6" style="min-height:600px">
+            <div class="col-md-12" style="height:98%">
+              <div class="card card-chart" style="height:97%">
+                <div class="card-header card-header-success" style="height:100%">
+                  <div class="ct-chart" style="height:100%" id="table_age"></div>
                 </div>
                 <div class="card-body">
-                  <h4 class="card-title">Bảng thống kê nghề nghiệp</h4>
+                  <h4 class="card-title">Bảng thống kê tuổi
+                    <div class="anotation">
+                      <div class="anotation_term" style="background: #e64033"> </div>
+                      <h6 style="float:left;">&nbsp; Nam &nbsp;</h6>
+                      <div class="anotation_term" style="background: #d8eede"> </div>
+                      <h6 style="float:left;">&nbsp; Nữ &nbsp;</h6>
+                    </div>
+                  </h4>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i> <%= date_statistic %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12">
+              <div class="card" style="min-height:230px">
+                <div class="card-header card-header-tabs card-header-primary">
+                </div>
+                <div class="card-body">
+                  <h4 id="percent_working_age"></h4>
+                  <h4 id="percent_out_of_work"></h4>
+                  <h4 id="percent_man"></h4>
+                  <h4 id="percent_woman"></h4>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12" style="height:425px">
+              <div class="card card-chart" style="height:425px">
+                <div class="card-header card-header-danger" style="height:75%;padding: 0px;background: white;">
+                  <div class="ct-chart" style="height:100%" id="table_religious"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">Bảng thống kê tôn giáo
+                    <div class="anotation">
+                      <div class="anotation_term" style="background: #5dbcd5;"> </div>
+                      <h6 style="float:left;">&nbsp; Không &nbsp;</h6>
+                      <div class="anotation_term" style="background:#e64033;"> </div>
+                      <h6 style="float:left;">&nbsp; Phật giáo &nbsp;</h6>
+                      <div class="anotation_term" style="background: #ec9620;"> </div>
+                      <h6 style="float:left;">&nbsp; Thiên chúa giáo &nbsp;</h6>
+                      <div class="anotation_term" > </div>
+                      <h6 style="float:left;">&nbsp; Hồi giáo &nbsp;</h6>
+                    </div>
+                  </h4>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -209,12 +200,30 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-12" style="height:425px">
+            <div class="card card-chart" style="height:425px">
+              <div class="card-header card-header-warning ct-chart" style="height: 80%;padding: 0px;">
+                <div class="ct-chart" style="height:98%;" id="table_jobs"></div>
+              </div>
+              <div class="card-body">
+                <h4 class="card-title">Bảng thống kê nghề nghiệp</h4>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons">access_time</i> <%= date_statistic %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
     <!-- /.row -->
 
   </div>
   <!-- /.container -->
-<!--   Core JS Files   -->
+  <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js"></script>
   <!-- Chartist JS -->
   <script src="assets/js/plugins/chartist.min.js"></script>
@@ -222,7 +231,7 @@
   <script src="assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
       // Javascript method's body can be found in assets/js/demos.js
       md.initDashboardPageCharts();
 
@@ -239,21 +248,19 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script language="javascript" src="js/dashboard.js" ></script>
+  <script language="javascript" src="js/dashboard.js"></script>
   <!-- file này chứa hàm vẽ biểu đồ và chứa hàm điều hướng chạy thống kê -->
-
-  <!-- một số dòng html phục vụ cho việc truyền dữ liệu -->
-  <p id="percent_age" style="visibility: hidden" > <%=percent_age%></p>
-  <p id="percent_jobs" style="visibility: hidden" > <%=percent_jobs%></p>
-  <p id="percent_religious" style="visibility: hidden" > <%=percent_religious%></p>
-  <!-- một số dòng html phục vụ cho việc truyền dữ liệu -->
-
   <!-- vẽ các biểu đồ , hàm này ở public/js/dashboard.js -->
+  <div id="show" style="display: none">
+    <p id="percent_age" style="visibility: hidden"> <%=percent_age%></p>
+    <p id="percent_jobs" style="visibility: hidden"> <%=percent_jobs%></p>
+    <p id="percent_religious" style="visibility: hidden"> <%=percent_religious%></p>
+  </div>
   <script>
     var percent_age = JSON.parse($("#percent_age").text());
     var percent_jobs = JSON.parse($("#percent_jobs").text());
     var percent_religious = JSON.parse($("#percent_religious").text());
-    draw_chart(percent_age,percent_jobs,percent_religious);
+    draw_chart(percent_age, percent_jobs, percent_religious);
   </script>
 </body>
 
