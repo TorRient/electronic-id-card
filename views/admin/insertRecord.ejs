@@ -19,6 +19,8 @@
   <link href="../assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <!-- file này css cho mục cảnh báo chạy thống kê -->
+  <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
 </head>
 
 <body class="">
@@ -334,6 +336,47 @@
   <!-- Jquery template -->
   <script src="../js/jquery.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <script language="javascript" src="../js/dashboard.js"></script>
+  <!-- file này chứa hàm vẽ biểu đồ và chứa hàm điều hướng chạy thống kê -->
+  <!-- loadding -->
+  <div id="circle">
+    <div class="loader">
+      <div class="loader">
+        <div class="loader">
+          <div class="loader">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- một số dòng html phục vụ cho việc truyền dữ liệu -->
+  <div id="show" style="display: none">
+    <div id="warning">
+    </div>
+    <div id="box_warning">
+      <h4 style="padding: 20px; text-align: center;">Việc chạy thống kê có thể mấy 5-10 phút , bạn có muốn tiếp tục !
+      </h4>
+      <div id="ok" onclick="ok()">Tiếp tục</div>
+      <div id="cance" onclick="cance()">Trở lại</div>
+    </div>
+  </div>
+  <!-- một số dòng html phục vụ cho việc truyền dữ liệu -->
+  <script>
+    $(document).ready(function () {
+      $('#box-run-statistic').click(function () {
+        $('#show').css("display", "block")
+      });
+      $('#cance').click(function(){
+        $('#show').css("display", "none")
+      })
+      $('#ok').click(function(){
+        $('#show').css("display", "none")
+      })
+    })
+  </script>
+
 </body>
 
 </html>
