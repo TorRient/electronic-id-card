@@ -66,30 +66,31 @@ exports.insertRecord = function (req, res) {
                 });
             } else {
                 console.log("CMT không tồn tại");
-                await axios.post('http://0.0.0.0:5000/insertRecord', {
-                    ID: req.body.so_cmt,
-                    data: anh_chan_dung
-                })
-                    .then(function (response) {
-                        insert.save(function (err) {
-                            if (err) {
-                                res.json({
-                                    result: 'failed',
-                                    data: {},
-                                    message: 'khong the insert'
-                                })
-                            } else {
-                                console.log("Thanh cong");
-                            }
-                        })
-                    })
-                    .catch(function (error) {
+                insert.save(function (err) {
+                    if (err) {
                         res.json({
                             result: 'failed',
                             data: {},
                             message: 'khong the insert'
                         })
-                    });
+                    } else {
+                        console.log("Thanh cong");
+                    }
+                })
+                // await axios.post('http://0.0.0.0:5000/insertRecord', {
+                //     ID: req.body.so_cmt,
+                //     data: anh_chan_dung
+                // })
+                //     .then(function (response) {
+                        
+                //     })
+                //     .catch(function (error) {
+                //         res.json({
+                //             result: 'failed',
+                //             data: {},
+                //             message: 'khong the insert'
+                //         })
+                //     });
 
                 return res.render('admin/insertRecord', {
                     title: "Insert Record",
