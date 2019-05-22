@@ -36,17 +36,17 @@ function load_province_ajax(pv){
 
 
 function run_statistic(){
-  document.getElementById("warning").style.display = 'block' ;
+  document.getElementById("warning2").style.display = 'block' ;
   document.getElementById("box_warning").style.display = 'block' ;
 }
 
 
 function ok(){
   document.getElementById("box_warning").style.display = 'none' ;
-  document.getElementById("warning").style.display = 'block' ;
+  document.getElementById("warning2").style.display = 'block' ;
   document.getElementById("circle").style.display = 'block' ;
   setTimeout(function(){
-    document.getElementById("warning").style.display = 'none' ;
+    document.getElementById("warning2").style.display = 'none' ;
     document.getElementById("circle").style.display = 'none' ;
   }, 150000);
   pv = $('#province_select').val() ;
@@ -60,7 +60,7 @@ function ok(){
     },
     // result trong hàm success ở dưới chứa kết quả từ server trả về
     success : function (result){
-      document.getElementById("warning").style.display = 'none' ;
+      document.getElementById("warning2").style.display = 'none' ;
       document.getElementById("circle").style.display = 'none' ;
       results = JSON.parse(result);
       update_statistic(results["statistic"],results["date_statistic"]);
@@ -72,7 +72,7 @@ function ok(){
   }); 
 }
 function cance(){
-  document.getElementById("warning").style.display = 'none' ;
+  document.getElementById("warning2").style.display = 'none' ;
   document.getElementById("box_warning").style.display = 'none' ;
 }
 
