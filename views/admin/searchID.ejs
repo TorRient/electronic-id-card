@@ -51,12 +51,22 @@
                     <form>
                       <div class="row">
                         <div class="col-md-4">
+                          <%if (conditional == 0) { %>
                           <div class="form-group">
                             <label class="bmd-label-floating">Ảnh chân dung</label>
                             <br>
-                            <img src="data:image/jpeg;base64,<%= data.anh_chan_dung %>"
-                                class="rounded " alt="your image" width="180px" height="240px">
+                            <img src="data:image/jpeg;base64,<%= data.anh_chan_dung %>" class="rounded "
+                              alt="your image" width="180px" height="240px">
                           </div>
+                          <% } %>
+                          <%if (conditional == 1) { %>
+                          <div class="form-group">
+                            <label class="bmd-label-floating">Ảnh chân dung</label>
+                            <br>
+                            <img src="./images/person.jpg" class="rounded " alt="your image" width="180px"
+                              height="240px">
+                          </div>
+                          <% } %>
                         </div>
                         <div class="col-md-4">
                           <div>
@@ -182,18 +192,32 @@
                       </div>
                       <hr>
                       <div class="row">
+                        <%if (conditional == 0) { %>
                         <div class="col-md-6 text-center">
-                            <label class="bmd-label-floating">Ảnh chứng minh thư mặt trước</label>
-                            <br>
-                            <img src="data:image/jpeg;base64,<%= data.anh_cmt_truoc %>"
-                            class="rounded" alt="your image" width="400px" height="280px">
+                          <label class="bmd-label-floating">Ảnh chứng minh thư mặt trước</label>
+                          <br>
+                          <img src="data:image/jpeg;base64,<%= data.anh_cmt_truoc %>" class="rounded" alt="your image"
+                            width="400px" height="280px">
                         </div>
                         <div class="col-md-6 text-center">
-                            <label class="bmd-label-floating">Ảnh chứng minh thư mặt sau</label>
-                            <br>
-                            <img src="data:image/jpeg;base64,<%= data.anh_cmt_sau %>"
-                            class="rounded" alt="your image" width="400px" height="280px">
+                          <label class="bmd-label-floating">Ảnh chứng minh thư mặt sau</label>
+                          <br>
+                          <img src="data:image/jpeg;base64,<%= data.anh_cmt_sau %>" class="rounded" alt="your image"
+                            width="400px" height="280px">
                         </div>
+                        <% } %>
+                        <%if (conditional == 1) { %>
+                        <div class="col-md-6 text-center">
+                          <label class="bmd-label-floating">Ảnh chứng minh thư mặt trước</label>
+                          <br>
+                          <img src="./images/card.png" class="rounded" alt="your image" width="400px" height="280px">
+                        </div>
+                        <div class="col-md-6 text-center">
+                          <label class="bmd-label-floating">Ảnh chứng minh thư mặt sau</label>
+                          <br>
+                          <img src="./images/card.png" class="rounded" alt="your image" width="400px" height="280px">
+                        </div>
+                        <% } %>
                       </div>
                       <br>
                       <br>
@@ -333,10 +357,10 @@
       $('#box-run-statistic').click(function () {
         $('#show').css("display", "block")
       });
-      $('#cance').click(function(){
+      $('#cance').click(function () {
         $('#show').css("display", "none")
       })
-      $('#ok').click(function(){
+      $('#ok').click(function () {
         $('#show').css("display", "none")
       })
     })

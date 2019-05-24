@@ -79,8 +79,6 @@ function drawRegionsMap() {
         region: 'VN',
         displayMode: 'regions',
         resolution: 'provinces',
-        width: 800,
-        height: 600,
         colorAxis: {
             colors: ['yellow', 'red']
         }

@@ -48,7 +48,8 @@ exports.editID = function (req, res) {
           dan_toc: dan_toc,
           ton_giao: ton_giao,
           nghe_nghiep: nghe_nghiep,
-          conditional: 2
+          conditional: 2,
+          title: "Edit ID"
         });
       };
     });
