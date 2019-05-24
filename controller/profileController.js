@@ -5,7 +5,7 @@ exports.get_profile = (req, res, next) => {
         .exec(function (err, profile) {
             if (err) 
                 return next(err)
-        res.render('admin/userProfile', {title: 'Your Profile', username: req.user.user_name, condition : 0, profile: profile} )
+        res.render('admin/userProfile', {title: 'Your Profile', username: profile.fullname, condition : 0, profile: profile} )
     })
 }
 
@@ -14,7 +14,10 @@ exports.update_profile = (req, res, next) => {
         if (err) {
             return res.render('admin/userProfile', {title: 'Your Profile', condition : 500, profile: req.body })
         };
-        res.render('admin/userProfile', {title: 'Your Profile', username: req.user.user_name, condition : 1, profile: req.body })
+        
+        fullname = req.body.firstname + ' ' + req.body.lastname
+
+        res.render('admin/userProfile', {title: 'Your Profile', username: fullname, condition : 1, profile: req.body })
     });
 }
 
